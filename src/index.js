@@ -1,32 +1,17 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import GAnalytics from 'ganalytics';
 import App from '@components/App';
 import './index.css';
 
-let root = document.querySelector('#app');
+ReactDOM.render(<App />, document.getElementById('app'));
 
-if (process.env.NODE_ENV === 'development' && module.hot) {
-	let elem = root.appendChild(App());
-
-	module.hot.accept('@components/App', New => {
-		New = require('@components/App').default;
-		root.removeChild(elem);
-		elem = root.appendChild(New());
-	});
-} else if (process.env.NODE_ENV === 'production') {
-	window.ga = new GAnalytics('UA-XXXXXXXX-X');
-
-	let nxt = App();
-	let prev = root.firstElementChild;
-
-	// Check for matching DOM (`export`)
-	if (prev && prev.isEqualNode(nxt)) {
-		root.replaceChild(nxt, prev);
-	} else {
-		root.appendChild(nxt);
-	}
-
-	// Service Worker registration
-	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('/sw.js');
-	}
-}
+// disable service worker for No Cache.
+// if (process.env.NODE_ENV === 'production') {
+//   window.ga = new GAnalytics('UA-XXXXXXXX-X');
+// 
+//   // Service Worker registration
+//   if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('/pwanything/sw.js', {scope: '/pwanything/'});
+//   }
+// }

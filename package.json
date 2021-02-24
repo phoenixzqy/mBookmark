@@ -1,17 +1,21 @@
 {
   "private": true,
   "scripts": {
-    "build": "pwa export",
+    "build": "pwa export && ./deploy.sh",
     "start": "sirv build -s",
     "watch": "pwa watch"
   },
   "dependencies": {
     "ganalytics": "^3.0.0",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "react-draggable": "^4.4.3",
     "sirv-cli": "^0.4.0"
   },
   "devDependencies": {
     "@pwa/cli": "latest",
-    "@pwa/plugin-sw-workbox": "latest"
+    "@pwa/plugin-sw-workbox": "latest",
+    "@pwa/preset-react": "latest"
   },
   "browserslist": [
     ">0.25%",
