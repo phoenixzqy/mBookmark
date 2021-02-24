@@ -9,4 +9,5 @@
 * Create user spotlight?
 * Recent visited?
 * User requests to add new sites
+* Add user instruction for PWA installation
 
