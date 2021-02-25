@@ -3,6 +3,7 @@
   display:-webkit-flex;
   flex-direction: column;
   height: 150px;
+  min-height: 150px;
   flex-basis: 150px;
   width: 100vw;
   border-bottom: 1px solid #eee;
