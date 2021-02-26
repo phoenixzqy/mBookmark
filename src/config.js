@@ -158,16 +158,6 @@ const apps = {
         icon: "https://gimy.tv/favicon.ico"
       },
       {
-        name: "看吧影视",
-        url: "https://www.21kan.cc",
-        icon: "https://www.21kan.cc/template/A012/asset/img/favicon.png"
-      },
-      {
-        name: "看吧电影",
-        url: "https://www.k8dy.net",
-        icon: null
-      },
-      {
         name: "欧乐影院",
         url: "https://www.olevod.com/",
         icon: "https://www.olevod.com/upload/site/20201117-1/08aee3974ca3d001ceab066233599789.png"
@@ -183,9 +173,24 @@ const apps = {
         icon: "https://www.ifvod.tv/assets/images/logos/logo.png"
       },
       {
+        name: "多瑙绿色影院",
+        url: "http://duonaolive.com/",
+        icon: "http://duonaolive.com/static/img/favicon.ico"
+      },
+      {
+        name: "星河TV",
+        url: "https://xinghe.tv/",
+        icon: "https://xinghe.tv/xinghe_icon.png"
+      },
+      {
         name: "胖子视频",
         url: "https://www.pangzitv.com/",
         icon: null
+      },
+      {
+        name: "看吧影视",
+        url: "https://www.21kan.cc",
+        icon: "https://www.21kan.cc/template/A012/asset/img/favicon.png"
       },
     ]
   },
