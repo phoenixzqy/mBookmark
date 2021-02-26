@@ -10,7 +10,7 @@ function Site({data}) {
       <div 
         className={style.icon} 
         style={{
-          backgroundImage: `url("${data.icon}")`
+          backgroundImage: data.icon ? `url("${data.icon}")` : null
         }}
         onClick={() => {
           let event = new CustomEvent("show-iframe", {detail:{url: data.url}});

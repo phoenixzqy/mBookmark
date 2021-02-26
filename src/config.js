@@ -40,10 +40,76 @@ const apps = {
       },
     ]
   },
+  news: {
+    title: "News & Readings",
+    icon: "",
+    apps: [
+      {
+        name: "The Top",
+        url: "https://the.top/",
+        icon: "https://the.top/favicon.ico"
+      },
+      {
+        name: "Any Knew",
+        url: "https://www.anyknew.com/",
+        icon: "https://f0cdn.anyknew.com/web/img/icons/apple-touch-icon-152x152.png"
+      },
+      {
+        name: "果汁排行榜",
+        url: "http://guozhivip.com/rank/",
+        icon: "http://guozhivip.com/images/ic.ico"
+      },
+      {
+        name: "科塔学术",
+        url: "https://site.sciping.com/",
+        icon: "https://site.sciping.com/images/fav.ico"
+      },
+      {
+        name: "Slant",
+        url: "https://www.slant.co/",
+        icon: "https://www.slant.co/images/favicon.png"
+      },
+      {
+        name: "Product Hunt",
+        url: "https://www.producthunt.com/",
+        icon: "https://ph-static.imgix.net//favicon.ico"
+      },
+      {
+        name: "大数据导航",
+        url: "http://hao.199it.com/",
+        icon: "http://hao.199it.com/favicon.ico"
+      },
+      {
+        name: "softonic",
+        url: "https://en.softonic.com/",
+        icon: "https://sc.sftcdn.net/images/34fb4-e13e1.ico"
+      },
+      {
+        name: "网易数读",
+        url: "https://data.163.com/special/datablog/?_pc=1",
+        icon: "https://data.163.com/favicon.ico"
+      },
+      {
+        name: "世界网址大全",
+        url: "http://www.world68.com/",
+        icon: "http://www.world68.com/favicon.ico"
+      },
+      {
+        name: "FOSSHUB",
+        url: "https://www.fosshub.com/",
+        icon: "https://www.fosshub.com/media/favicon/favicon-16x16.png"
+      },
+    ]
+  },
   tools: {
     title: "Tools",
     icon: "",
     apps: [
+      {
+        name: "duckduckgo",
+        url: "https://duckduckgo.com/",
+        icon: "https://duckduckgo.com/assets/icons/meta/DDG-iOS-icon_152x152.png"
+      },
       {
         name: "PWA集散地",
         url: "https://pwapp.net/",
@@ -119,7 +185,7 @@ const apps = {
       {
         name: "胖子视频",
         url: "https://www.pangzitv.com/",
-        icon: "https://www.pangzitv.com/template/$px$cydy002/img/logo.png"
+        icon: null
       },
     ]
   },
@@ -127,6 +193,11 @@ const apps = {
     title: "Game",
     icon: "",
     apps: [
+      {
+        name: "街机大全！",
+        url: "https://www.yikm.net/",
+        icon: "https://www.yikm.net/f.png"
+      },
       {
         name: "Sudoku",
         url: "https://sudoku.jull.dev/",
@@ -186,7 +257,7 @@ const apps = {
       {
         name: "KKK动漫",
         url: "http://m.ikkdm.com/",
-        icon: "http://m.ikkdm.com/images/head_logo.gif"
+        icon: null
       },
       {
         name: "一直看动漫",
