@@ -10,7 +10,7 @@ function Category({data}) {
         <span>{data.title}</span>
       </div>
       <div className={style.sitelist}>
-        {data.apps.map((app, i) => <Href key={i} data={app}/>)}
+        {data.apps.map((app, i) => <Href key={i} data={app} />)}
       </div>
     </div>
   )
