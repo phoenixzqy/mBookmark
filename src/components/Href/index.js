@@ -43,7 +43,6 @@ function Href({data}) {
         // simulate the loading process in .5 sec
         setTimeout(() => {
           window.location.href = data.url;
-          window.document.querySelector(".loading-container").style.display = "none";
         }, 500);
       }}
     >

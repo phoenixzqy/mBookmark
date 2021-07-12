@@ -210,4 +210,11 @@
       </svg>
     </div>
   </body>
+  <script>
+    // hide loading cover when user using <BACK> btn on browser
+    var myCustomEvent = (navigator.userAgent.match('iPhone') != null) ? 'popstate' : 'pageshow';
+    window.addEventListener(myCustomEvent, function(e) {
+        window.document.querySelector(".loading-container").style.display = "none";
+    })
+  </script>
 </html>
