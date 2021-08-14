@@ -1,5 +1,112 @@
 const DEFAULT_ICON = "https://reactjs.org/favicon.ico"
 const apps = {
+  tools: {
+    title: "Tools",
+    icon: "",
+    apps: [
+      {
+        name: "KeeWeb",
+        url: "https://app.keeweb.info/",
+        icon: "https://app.keeweb.info/icons/favicon-16x16.png"
+      },
+      {
+        name: "QRCode Tools",
+        url: "https://www.the-qrcode-generator.com/scan",
+        icon: "https://www.the-qrcode-generator.com/images/icon48.png"
+      },
+      {
+        name: "点心工具",
+        url: "https://www.shulijp.com/index.html",
+        icon: "https://www.shulijp.com/resources/www/img/favicon.ico"
+      },
+      {
+        name: "在线工具箱",
+        url: "http://www.toolzl.com/",
+        icon: "http://www.toolzl.com/favicon.ico",
+      },
+      {
+        name: "PDF 24 Tools",
+        url: "https://tools.pdf24.org/zh/",
+        icon: "https://tools.pdf24.org/static/img/pdf24.png?v=5cf19973",
+      },
+      {
+        name: "度盘下载器",
+        url: "https://bdd.fzxx.xyz/",
+        icon: DEFAULT_ICON,
+      },
+      {
+        name: "云短信接码平台",
+        url: "http://z-sms.com/",
+        icon: DEFAULT_ICON,
+      },
+      {
+        name: "Photo Kit",
+        url: "https://photokit.com/",
+        icon: "https://photokit.com/favicon.ico",
+      },
+      {
+        name: "图片压缩处理",
+        url: "http://www.diqibu.com/",
+        icon: "http://www.diqibu.com/favicon.ico",
+      },
+      {
+        name: "视频剪辑平台",
+        url: "https://zh.pickfrom.net/",
+        icon: "https://zh.pickfrom.net/img/fav/favicon.ico",
+      },
+    ]
+  },
+  dev_readings: {
+    title: "Dev Readings",
+    icon: "",
+    apps: [
+      {
+        name: "Dev Community",
+        url: "https://dev.to/",
+        icon: "https://res.cloudinary.com/practicaldev/image/fetch/s--E8ak4Hr1--/c_limit,f_auto,fl_progressive,q_auto,w_32/https://dev-to.s3.us-east-2.amazonaws.com/favicon.ico"
+      },
+      {
+        name: "Stack Overflow",
+        url: "https://stackoverflow.com/questions?tab=Frequent",
+        icon: "https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico"
+      },
+      {
+        name: "Site Point",
+        url: "https://www.sitepoint.com/web/",
+        icon: "https://www.sitepoint.com/favicons/32x32.png"
+      },
+      {
+        name: "Github",
+        url: "https://github.com/explore",
+        icon: "https://github.githubassets.com/favicons/favicon.svg",
+      },
+      {
+        name: "dzone",
+        url: "https://dzone.com/",
+        icon: "https://dzone.com/themes/dz20/images/favicon.png"
+      },
+      {
+        name: "CSDN",
+        url: "https://www.csdn.net/",
+        icon: "https://g.csdnimg.cn/static/logo/favicon32.ico"
+      },
+      {
+        name: "Medium",
+        url: "https://medium.com/",
+        icon: "https://medium.com/favicon.ico"
+      },
+      {
+        name: "Unity Doc",
+        url: "https://docs.unity.cn/cn/current/Manual/index.html",
+        icon: "https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico"
+      },
+      {
+        name: "Unity Learn",
+        url: "https://learn.unity.com/",
+        icon: "https://connect-prd-cdn.unity.com/cdn-origin/images/favicons/favicon-16x16.png"
+      }
+    ]
+  },
   news: {
     title: "News & Readings",
     icon: "",
@@ -22,7 +129,7 @@ const apps = {
       {
         name: "知妖",
         url: "https://www.cbaigui.com/",
-        icon: "https://static.cbaigui.com/images/2020/10/cropped-logo.jpg!full",
+        icon: DEFAULT_ICON,
       },
       {
         name: "科塔学术",
@@ -63,47 +170,6 @@ const apps = {
         name: "FOSSHUB",
         url: "https://www.fosshub.com/",
         icon: "https://www.fosshub.com/media/favicon/favicon-16x16.png"
-      },
-    ]
-  },
-  stock: {
-    title: "Stock Market",
-    icon: "",
-    apps: [
-      {
-        name: "Ark追踪神器",
-        url: "https://ark.alien-tomato.com/",
-        icon: "https://ark.alien-tomato.com/logo.png"
-      },
-      {
-        name: "Ark Track",
-        url: "https://www.arktrack.com/",
-        icon: "https://www.arktrack.com/assets/favicon-32x32.png",
-      },
-      {
-        name: "TradingView",
-        url: "https://www.tradingview.com/",
-        icon: "https://www.tradingview.com/favicon.ico",
-      },
-      {
-        name: "Option Profit Calc",
-        url: "https://www.optionsprofitcalculator.com/",
-        icon: "https://cdn.jsdelivr.net/gh/opcalc/v2-assets@2.4.59/favicon.ico",
-      },
-      {
-        name: "TipRanks",
-        url: "https://www.tipranks.com/",
-        icon: "https://tr-frontend-cdn.azureedge.net/static/v1/static/images/logo/tipranks/favicon.ico",
-      },
-      {
-        name: "Penny Stocks",
-        url: "https://pennystocks.com/",
-        icon: "https://pennystocks.com/wp-content/uploads/2019/03/cropped-pennystocks-favicon-32x32.jpg",
-      },
-      {
-        name: "ivolatility",
-        url: "https://www.ivolatility.com/",
-        icon: "https://www.ivolatility.com/favicon.ico",
       },
     ]
   },
@@ -199,6 +265,36 @@ const apps = {
         icon: "https://game.chronodivide.com/favicon.ico"
       },
       {
+        name: "ClickPocalypse2",
+        url: "https://minmaxia.com/c2/",
+        icon: "http://minmaxia.com/clickpocalypse/favicon.ico"
+      },
+      {
+        name: "末日危机2",
+        url: "http://m.mhhf.com/game-4679/index67.html",
+        icon: "http://m.mhhf.com/game-4679/favicon.ico"
+      },
+      {
+        name:"宝可梦点击2",
+        url: "https://g8hh.github.io/pokeclicker/",
+        icon: "https://g8hh.github.io/pokeclicker/assets/images/favicon.ico"
+      },
+      {
+        name: "证道·伏魔录",
+        url: "http://fml.alangge.com/",
+        icon: DEFAULT_ICON
+      },
+      {
+        name:"墨魂·长生界",
+        url: "http://mh.alangge.com/",
+        icon: DEFAULT_ICON
+      },
+      {
+        name:"金庸群侠•大乱斗",
+        url: "https://zhouxiaobo1990.gitee.io/jyf/",
+        icon: DEFAULT_ICON
+      },
+      {
         name: "Sudoku",
         url: "https://sudoku.jull.dev/",
         icon: "https://sudoku.jull.dev/favicon.ico",
@@ -240,6 +336,22 @@ const apps = {
       },
     ]
   },
+  pcgames: {
+    title: "PC Games",
+    icon: "",
+    apps: [
+      {
+        name:"Pokemmo",
+        url: "https://pokemmo.eu/",
+        icon: "https://pokemmo.eu/favicon.ico"
+      },
+      {
+        name: "PC6 (PC only)",
+        url: "http://www.pc6.com/",
+        icon: "http://www.pc6.com/favicon.ico"
+      }
+    ]
+  },
   comic: {
     title: "Comic",
     icon: "",
@@ -271,54 +383,44 @@ const apps = {
       },
     ]
   },
-  tools: {
-    title: "Tools",
+  stock: {
+    title: "Stock Market",
     icon: "",
     apps: [
       {
-        name: "KeeWeb",
-        url: "https://app.keeweb.info/",
-        icon: "https://app.keeweb.info/icons/favicon-16x16.png"
+        name: "Ark追踪神器",
+        url: "https://ark.alien-tomato.com/",
+        icon: "https://ark.alien-tomato.com/logo.png"
       },
       {
-        name: "点心工具",
-        url: "https://www.shulijp.com/index.html",
-        icon: "https://www.shulijp.com/resources/www/img/favicon.ico"
+        name: "Ark Track",
+        url: "https://www.arktrack.com/",
+        icon: "https://www.arktrack.com/assets/favicon-32x32.png",
       },
       {
-        name: "在线工具箱",
-        url: "http://www.toolzl.com/",
-        icon: "http://www.toolzl.com/favicon.ico",
+        name: "TradingView",
+        url: "https://www.tradingview.com/",
+        icon: "https://www.tradingview.com/favicon.ico",
       },
       {
-        name: "PDF 24 Tools",
-        url: "https://tools.pdf24.org/zh/",
-        icon: "https://tools.pdf24.org/static/img/pdf24.png?v=5cf19973",
+        name: "Option Profit Calc",
+        url: "https://www.optionsprofitcalculator.com/",
+        icon: "https://cdn.jsdelivr.net/gh/opcalc/v2-assets@2.4.59/favicon.ico",
       },
       {
-        name: "度盘下载器",
-        url: "https://bdd.fzxx.xyz/",
-        icon: "https://bdd.fzxx.xyz/favicon.ico",
+        name: "TipRanks",
+        url: "https://www.tipranks.com/",
+        icon: "https://tr-frontend-cdn.azureedge.net/static/v1/static/images/logo/tipranks/favicon.ico",
       },
       {
-        name: "云短信接码平台",
-        url: "http://z-sms.com/",
-        icon: DEFAULT_ICON,
+        name: "Penny Stocks",
+        url: "https://pennystocks.com/",
+        icon: "https://pennystocks.com/wp-content/uploads/2019/03/cropped-pennystocks-favicon-32x32.jpg",
       },
       {
-        name: "Photo Kit",
-        url: "https://photokit.com/",
-        icon: "https://photokit.com/favicon.ico",
-      },
-      {
-        name: "图片压缩处理",
-        url: "http://www.diqibu.com/",
-        icon: "http://www.diqibu.com/favicon.ico",
-      },
-      {
-        name: "视频剪辑平台",
-        url: "https://zh.pickfrom.net/",
-        icon: "https://zh.pickfrom.net/img/fav/favicon.ico",
+        name: "ivolatility",
+        url: "https://www.ivolatility.com/",
+        icon: "https://www.ivolatility.com/favicon.ico",
       },
     ]
   },
