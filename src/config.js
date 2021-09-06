@@ -179,13 +179,13 @@ const apps = {
     apps: [
       {
         name: "IFVod",
-        url: "https://www.ifvod.tv/",
-        icon: "https://www.ifvod.tv/assets/images/logos/logo.png"
+        url: "https://www.ifsp.tv/",
+        icon: "https://www.ifsp.tv/assets/images/logos/logo.png"
       },
       {
-        name: "gimy剧迷",
-        url: "https://gimy.tv",
-        icon: "https://gimy.tv/favicon.ico"
+        name: "蛋蛋赞电影",
+        url: "https://www.dandanzan.com/",
+        icon: "https://www.dandanzan.com/favicon.ico"
       },
       {
         name: "欧乐影院",

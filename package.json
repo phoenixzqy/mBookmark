@@ -2,8 +2,7 @@
   "private": true,
   "scripts": {
     "build": "pwa export",
-    "start": "sirv build -s",
-    "watch": "pwa watch"
+    "start": "pwa watch"
   },
   "dependencies": {
     "ganalytics": "^3.0.0",
