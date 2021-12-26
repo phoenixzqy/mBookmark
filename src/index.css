@@ -1,0 +1,17 @@
+body {
+  --wall-paper: url("https://i.pinimg.com/736x/c1/9d/79/c19d7964360a0144b39a0e4b67ca2cfb.jpg");
+  --app-icon: url(https://developer.apple.com/design/human-interface-guidelines/macos/images/app-icon-ios-mail_2x.png);
+  --font-color: #fff;
+  --animation-duration: .2s;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+#app {
+  position: fixed;
+}

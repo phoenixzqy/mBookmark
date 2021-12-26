@@ -1,26 +1,19 @@
 {
-  "private": true,
+  "name": "vite-template-solid",
+  "version": "0.0.0",
+  "description": "",
   "scripts": {
-    "build": "pwa export",
-    "start": "pwa watch"
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^2.7.6",
+    "vite-plugin-solid": "^2.1.4"
   },
   "dependencies": {
-    "ganalytics": "^3.0.0",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
-    "react-draggable": "^4.4.3",
-    "sirv-cli": "^0.4.0"
-  },
-  "devDependencies": {
-    "@pwa/cli": "latest",
-    "@pwa/plugin-sw-workbox": "latest",
-    "@pwa/preset-react": "latest"
-  },
-  "browserslist": [
-    ">0.25%",
-    "last 1 version",
-    "not ie_mob 11",
-    "not ie 11",
-    "not dead"
-  ]
+    "solid-js": "^1.2.6"
+  }
 }

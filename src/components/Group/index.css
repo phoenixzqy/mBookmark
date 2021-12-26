@@ -1,0 +1,36 @@
+.group_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.group_container {
+  height: 55px;
+  width: 55px;
+  cursor: pointer;
+  display: grid;
+  background: rgba(255, 255, 255, 0.2);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  border-radius: 15px;
+  padding: 5px;
+  box-sizing: border-box;
+  transition-duration: var(--animation-duration);
+  overflow: hidden;
+}
+.inner_app {
+  height: 15px;
+  width: 15px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-image: var(--app-icon);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+.inner_app:nth-child(n + 10) {
+  display: none;
+}

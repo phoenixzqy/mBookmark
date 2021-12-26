@@ -1,16 +1,21 @@
 .app {
   display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
-.app::-webkit-scrollbar {
-  display: none;
+@media screen and (max-width: 843px) {
+  .app {
+    max-width: 390px;
+    max-height: 844px;
+  }
+}
+@media screen and (min-width: 844px) {
+  .app {
+    max-width: 810px;
+    max-height: 1080px;
+  }
 }

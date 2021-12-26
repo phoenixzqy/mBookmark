@@ -1,0 +1,15 @@
+.entry_title {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  font-size: 13px;
+  color: var(--font-color);
+  text-shadow: 1px 1px 1px #000, 1px 1px 1px #000;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  user-select: none;
+}
