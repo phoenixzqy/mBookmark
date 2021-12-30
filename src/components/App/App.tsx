@@ -4,9 +4,15 @@ const PopoverGroup = lazy(() => import('../PopoverGroup/PopoverGroup'));
 
 export const PopoverGroupContext = createContext();
 
+interface PopoverContextState {
+  isPopoverShow: () => boolean,
+  showPopoverGroup: () => void,
+  hidePopoverGroup: () => void,
+}
+export type { PopoverContextState };
 export function PopoverGroupProvidor(props) {
   const [isPopoverShow, setPopoverShow] = createSignal(false);
-  const state = {
+  const state: PopoverContextState = {
     isPopoverShow,
     showPopoverGroup: () => setPopoverShow(true),
     hidePopoverGroup: () => setPopoverShow(false)

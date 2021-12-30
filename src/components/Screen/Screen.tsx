@@ -1,10 +1,10 @@
 import { createSignal, useContext, For } from "solid-js";
-import { PopoverGroupContext } from '../App';
+import { PopoverGroupContext, PopoverContextState } from '../App';
 import { Entry, MiniEntryGroup } from '../Entry';
 
 
 function Screen() {
-  const { isPopoverShow } = useContext(PopoverGroupContext);
+  const { isPopoverShow } = useContext(PopoverGroupContext) as PopoverContextState;
   const [items, setItems] = createSignal([
     {
       type: "group",

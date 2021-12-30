@@ -1,6 +1,7 @@
 body {
-  --wall-paper: url("https://i.pinimg.com/736x/c1/9d/79/c19d7964360a0144b39a0e4b67ca2cfb.jpg");
-  --app-icon: url(https://developer.apple.com/design/human-interface-guidelines/macos/images/app-icon-ios-mail_2x.png);
+  --wall-paper: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pd19-20031-job582-1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=67b376f72998d0e474dffe8b1b5dc5a2");
+  --default-app-icon: url(./assets/dragon_icon_128x128.png);
+  --default-app-background-color: #000;
   --font-color: #fff;
   --animation-duration: .2s;
   --screen-group-animation-duration: .4s;
@@ -12,6 +13,9 @@ body {
   overflow: hidden;
   padding: 0;
   margin: 0;
+  background-color: #282728;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cg fill='%23000000' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+  user-select: none;
 }
 #app {
   position: fixed;
@@ -54,16 +58,17 @@ body {
   min-width:0;
 }
 .entry-container {
-  height: 55px;
-  width: 55px;
-  border-radius: 15px;
+  height: 45px;
+  width: 45px;
+  border-radius: 10px;
   cursor: pointer;
   position: relative;
-  background-image: var(--app-icon);
+  background-image: var(--default-app-icon);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 10px;
+  background-size: 35px 35px;
+  overflow: hidden;
+  background-color: var(--default-app-background-color);
 }
 .entry-title {
   position: relative;
@@ -80,7 +85,7 @@ body {
   text-overflow: ellipsis;
   user-select: none;
 }
-.group-wrapper {
+.mini-entry-group-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,7 +93,7 @@ body {
   height: 100%;
   position: relative;
 }
-.group-container {
+.mini-entry-group-container {
   height: 55px;
   width: 55px;
   cursor: pointer;
@@ -102,18 +107,20 @@ body {
   transition-duration: var(--animation-duration);
   overflow: hidden;
 }
-.inner-app {
-  height: 15px;
-  width: 15px;
+.mini-entry-inner-app {
+  height: 13px;
+  width: 13px;
   border-radius: 3px;
   cursor: pointer;
-  background-image: var(--app-icon);
+  background-image: var(--default-app-icon);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 10px;
+  background-size: 10px 10px;
+  border-radius: 4px;
+  background-color: var(--default-app-background-color);
+  overflow: hidden;
 }
-.inner-app:nth-child(n + 10) {
+.mini-entry-inner-app:nth-child(n + 10) {
   display: none;
 }
 .popover-bg {

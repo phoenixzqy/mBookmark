@@ -1,7 +1,7 @@
-export enum ArrowKeyCodes {
-  Up = 38,
-  Down = 40,
-  Left = 37,
-  Right = 39
+export enum ArrowKeys {
+  Up = "ArrowUp",
+  Down = "ArrowDown",
+  Left = "ArrowLeft",
+  Right = "ArrowRight"
 }
-
+export const EscapeKey = "Escape";

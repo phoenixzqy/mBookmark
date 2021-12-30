@@ -1,12 +1,12 @@
 import { createSignal, useContext, For, onMount, onCleanup } from "solid-js";
-import { PopoverGroupContext } from '../App';
+import { PopoverGroupContext, PopoverContextState } from '../App';
 import Screen from './Screen';
-import { ArrowKeyCodes } from "../../utils/constants";
+import { ArrowKeys } from "../../utils/constants";
 import { getTouchSwipeDirection, TouchSwipeDirections, Coordinates} from "../../utils/helpers";
 
 export default function ScreenGroup(props) {
   const { defaultScreen = 1, screens = [0,1,2] } = props;
-  const { isPopoverShow } = useContext(PopoverGroupContext);
+  const { isPopoverShow } = useContext(PopoverGroupContext) as PopoverContextState;
   const [currentScreen, setCurrentScreen] = createSignal(defaultScreen);
 
   function calculatePosition(index): Object {
@@ -22,13 +22,13 @@ export default function ScreenGroup(props) {
     } else return className;
   }
   
-  function handleKeyPress(event): void {
+  function handleKeyPress(event:KeyboardEvent): void {
     if (isPopoverShow()) return;
-    const { keyCode } = event;
-    if (!keyCode) return;
-    if (keyCode === ArrowKeyCodes.Left && currentScreen() > 0) {
+    const { key } = event;
+    if (!key) return;
+    if (key === ArrowKeys.Left && currentScreen() > 0) {
       setCurrentScreen(state => state - 1);
-    } else if (keyCode === ArrowKeyCodes.Right && currentScreen() < (screens.length - 1)) {
+    } else if (key === ArrowKeys.Right && currentScreen() < (screens.length - 1)) {
       setCurrentScreen(state => state + 1);
     }
   }
