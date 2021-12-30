@@ -3,6 +3,7 @@ body {
   --app-icon: url(https://developer.apple.com/design/human-interface-guidelines/macos/images/app-icon-ios-mail_2x.png);
   --font-color: #fff;
   --animation-duration: .2s;
+  --screen-group-animation-duration: .4s;
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -14,4 +15,312 @@ body {
 }
 #app {
   position: fixed;
+}
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  width: 900px;
+  height: 1280px;
+}
+@media screen and (max-width: 900px) {
+  .app {
+    width: 100vw;
+    height: 1280px;
+  }
+}
+@media screen and (max-height: 1280px) {
+  .app {
+    width: 900px;
+    height: 100vh;
+  }
+}
+@media screen and (max-width: 900px) and (max-height: 1280px) {
+  .app {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+.entry-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  min-width:0;
+}
+.entry-container {
+  height: 55px;
+  width: 55px;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+  background-image: var(--app-icon);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+.entry-title {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  font-size: 13px;
+  color: var(--font-color);
+  text-shadow: 1px 1px 1px #000, 1px 1px 1px #000;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+.group-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.group-container {
+  height: 55px;
+  width: 55px;
+  cursor: pointer;
+  display: grid;
+  background: rgba(255, 255, 255, 0.2);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  border-radius: 15px;
+  padding: 5px;
+  box-sizing: border-box;
+  transition-duration: var(--animation-duration);
+  overflow: hidden;
+}
+.inner-app {
+  height: 15px;
+  width: 15px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-image: var(--app-icon);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+.inner-app:nth-child(n + 10) {
+  display: none;
+}
+.popover-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.popover-group-container {
+  display: grid;
+  background: rgba(255, 255, 255, 0.2);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  border-radius: 15px;
+  padding: 5px;
+  box-sizing: border-box;
+  transition-duration: var(--animation-duration);
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 340px;
+  margin-left: -140px;
+  margin-top: -170px;
+  overflow: hidden;
+}
+.popover-group-container-show {
+  transform: scale(1);
+}
+.popover-group-container-hide {
+  transform: scale(0.3);
+}
+.popover-group {
+  transition-duration: var(--animation-duration);
+}
+.popover-group-hide {
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.popover-group-show {
+  opacity: 1;
+  z-index: 100;
+  pointer-events: all;
+}
+@media screen and (min-width: 844px) {
+  .popover-group-container {
+    width: 480px;
+    height: 540px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    margin-left: -240px;
+    margin-top: -270px;
+  }
+}
+.screen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.screen-app-container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition-duration: var(--animation-duration);
+}
+.screen-app-container-show {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+.screen-app-container-hide {
+  transform: scale(0.8);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 900px) {
+  .screen-app-container {
+    grid-template-columns: repeat(9, 1fr);
+  }
+}
+@media screen and (max-width: 810px) {
+  .screen-app-container {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+@media screen and (max-width: 720px) {
+  .screen-app-container {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+@media screen and (max-width: 630px) {
+  .screen-app-container {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+@media screen and (max-width: 540px) {
+  .screen-app-container {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media screen and (max-width: 450px) {
+  .screen-app-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (max-width: 360px) {
+  .screen-app-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-height: 1280px) {
+  .screen-app-container {
+    grid-template-rows: repeat(11, 1fr);
+  }
+}
+@media screen and (max-height: 1180px) {
+  .screen-app-container {
+    grid-template-rows: repeat(10, 1fr);
+  }
+}
+@media screen and (max-height: 1080px) {
+  .screen-app-container {
+    grid-template-rows: repeat(9, 1fr);
+  }
+}
+@media screen and (max-height: 980px) {
+  .screen-app-container {
+    grid-template-rows: repeat(8, 1fr);
+  }
+}
+@media screen and (max-height: 880px) {
+  .screen-app-container {
+    grid-template-rows: repeat(7, 1fr);
+  }
+}
+@media screen and (max-height: 780px) {
+  .screen-app-container {
+    grid-template-rows: repeat(6, 1fr);
+  }
+}
+@media screen and (max-height: 680px) {
+  .screen-app-container {
+    grid-template-rows: repeat(5, 1fr);
+  }
+}
+.screen-background {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  background-image: var(--wall-paper);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  transition-duration: var(--animation-duration);
+}
+.background-show {
+  filter: none;
+  transform: scale(1);
+}
+.background-hide {
+  filter: blur(7px);
+  transform: scale(1.2);
+}
+.screen-group {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition-duration: var(--screen-group-animation-duration);
+}
+.screen-group-item {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition-duration: var(--screen-group-animation-duration);   
+}
+.screen-group-tabs {
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+}
+.screen-group-tab {
+    display: inline-block;
+    height: 5px;
+    width: 5px;
+    background-color: white;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition-duration: var(--screen-group-animation-duration);
+}
+.screen-group-tab-active {
+    width: 30px;
 }
