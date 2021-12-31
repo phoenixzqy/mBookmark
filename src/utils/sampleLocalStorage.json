@@ -1,0 +1,16 @@
+{
+  "siteConfig": {
+    "appearance": {
+      "screenDirection": ""
+    }
+  },
+  "user": {
+    "token": "",
+    "gistId": ""
+  },
+  "widgets": {
+    "feedly": {
+      "token" : ""
+    }
+  }
+}

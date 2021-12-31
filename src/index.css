@@ -1,10 +1,11 @@
 body {
-  --wall-paper: url("https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/pd19-20031-job582-1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=67b376f72998d0e474dffe8b1b5dc5a2");
-  --default-app-icon: url(./assets/dragon_icon_128x128.png);
-  --default-app-background-color: #000;
+  --wall-paper: url("./assets/default_wall_paper.jpg");
+  --app-icon: url(./assets/dragon_icon_128x128.png);
+  --app-background-color: #0000002b;
   --font-color: #fff;
   --animation-duration: .2s;
   --screen-group-animation-duration: .4s;
+  --font-size: 14px;
   display: flex;
   width: 100vw;
   height: 100vh;
@@ -58,24 +59,24 @@ body {
   min-width:0;
 }
 .entry-container {
-  height: 45px;
-  width: 45px;
+  height: 55px;
+  width: 55px;
   border-radius: 10px;
   cursor: pointer;
   position: relative;
-  background-image: var(--default-app-icon);
+  background-image: var(--app-icon);
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 35px 35px;
+  background-size: 45px 45px;
   overflow: hidden;
-  background-color: var(--default-app-background-color);
+  background-color: var(--app-background-color);
 }
 .entry-title {
   position: relative;
   display: inline-block;
   text-align: center;
   width: 100%;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--font-color);
   text-shadow: 1px 1px 1px #000, 1px 1px 1px #000;
   overflow: hidden;
@@ -87,6 +88,7 @@ body {
 }
 .mini-entry-group-wrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -112,12 +114,12 @@ body {
   width: 13px;
   border-radius: 3px;
   cursor: pointer;
-  background-image: var(--default-app-icon);
+  background-image: var(--app-icon);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 10px 10px;
   border-radius: 4px;
-  background-color: var(--default-app-background-color);
+  background-color: var(--app-background-color);
   overflow: hidden;
 }
 .mini-entry-inner-app:nth-child(n + 10) {
@@ -148,7 +150,21 @@ body {
   height: 340px;
   margin-left: -140px;
   margin-top: -170px;
+}
+.popover-group-title {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  font-size: 24px;
+  color: var(--font-color);
+  text-shadow: 1px 1px 1px #000, 1px 1px 1px #000;
   overflow: hidden;
+  box-sizing: border-box;
+  padding: 0 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  user-select: none;
+  top: -35px;
 }
 .popover-group-container-show {
   transform: scale(1);

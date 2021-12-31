@@ -1,10 +1,26 @@
-import EntryTitle from './EntryTitle';
+import { createSignal } from 'solid-js';
+import { EntryTypes } from '../../utils/constants';
+import BookmarkEntry from './BookmarkEntry';
 
-export default function Entry() {
+
+interface BaseEntryConfig {
+  type: EntryTypes,
+}
+
+export default function Entry(props) {
+  const [config, setConfig] = createSignal(props.config as BaseEntryConfig);
+  function getEntryTemplate() {
+    if (config().type === EntryTypes.bookemark) {
+      return <BookmarkEntry config={config()} />
+    } else {
+      return <span>Unsupported entry type</span>
+    }
+  }
   return (
-    <div class="entry-wrapper">
-      <div class="entry-container"></div>
-      <EntryTitle name="test" />
-    </div>
+    <>
+      {getEntryTemplate()}
+    </>
   );
 }
+
+export type { BaseEntryConfig };

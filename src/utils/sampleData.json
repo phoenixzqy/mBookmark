@@ -1,0 +1,88 @@
+{
+    "siteConfig": {
+        "appearance": {
+            "wallpaper": null,
+            "background": null,
+            "themeColor": "#fff"
+        },
+        "widgets": {
+            "feedly": {
+                "theme": ""
+            },
+            "search": {
+                "engine": "bing"
+            },
+            "clock": {
+                "regions": [
+                    "local",
+                    "beijing"
+                ],
+                "theme": "digital"
+            },
+            "weather": {
+                "regions": [
+                    "local"
+                ],
+                "theme": "normal"
+            }
+        },
+        "apps": {
+            "QRScanner": {}
+        }
+    },
+    "screens": [
+        {
+            "type": "feedly"
+        },
+        {
+            "type": "normal",
+            "items": [
+                {
+                    "type": "miniEntryGroup",
+                    "name": "Readings",
+                    "items": [{
+                            "type": "bookmark",
+                            "url": "https://feedly.com",
+                            "icon": "https://feedly.com/favicon.ico",
+                            "name": "Feedly",
+                            "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
+                            "keywords": ["RSS", "readings"]
+                        },
+                        {
+                            "type": "bookmark",
+                            "url": "https://github.com/",
+                            "icon": "https://github.githubassets.com/favicons/favicon.svg",
+                            "name": "Github",
+                            "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
+                            "keywords": ["tech", "readings"]
+                        }
+                    ]
+                },
+                {
+                    "type": "miniEntryGroup",
+                    "name": "Technology",
+                    "items": [{
+                            "type": "bookmark",
+                            "url": "https://juejin.cn/",
+                            "icon": "https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web//static/favicons/apple-touch-icon.png",
+                            "name": "掘金",
+                            "description": "掘金是一个帮助开发者成长的社区,是给开发者用的 Hacker News,给设计师用的 Designer News,和给产品经理用的 Medium。掘金的技术文章由稀土上聚集的技术大牛和极客共同编辑为你筛选出最优质的干货,其中包括：Android、iOS、前端、后端等方面的内容。用户每天都可以在这里找到技术世界的头条内容。与此同时,掘金内还有沸点、掘金翻译计划、线下活动、专栏文章等内容。即使你是 GitHub、StackOverflow、开源中国的用户,我们相信你也可以在这里有所收获。",
+                            "keywords": ["tech", "readings"]
+                        }
+                    ]
+                },
+                {
+                    "type": "bookmark",
+                    "url": "https://phoenixzqy.github.io",
+                    "icon": "",
+                    "name": "Felix Zhao's playland",
+                    "description": "Felix's blog site, powered by Github page",
+                    "keywords": ["blog", "readings"]
+                }
+            ]
+        },
+        {
+            "type": "widgets"
+        }
+    ]
+}

@@ -1,14 +1,15 @@
 import { createSignal, useContext, For, onMount, onCleanup } from "solid-js";
 import { PopoverGroupContext, PopoverContextState } from '../App';
-import Screen from './Screen';
 import { ArrowKeys } from "../../utils/constants";
 import { getTouchSwipeDirection, TouchSwipeDirections, Coordinates} from "../../utils/helpers";
+import type { BaseScreenConfig } from './Screen';
+import Screen from './Screen';
 
 export default function ScreenGroup(props) {
-  const { defaultScreen = 1, screens = [0,1,2] } = props;
+  const { defaultScreen = 1 } = props;
   const { isPopoverShow } = useContext(PopoverGroupContext) as PopoverContextState;
   const [currentScreen, setCurrentScreen] = createSignal(defaultScreen);
-
+  const [screens] = createSignal(props.config as BaseScreenConfig[])
   function calculatePosition(index): Object {
     return {
       left: `${(index() - currentScreen()) * 100}%`
@@ -28,7 +29,7 @@ export default function ScreenGroup(props) {
     if (!key) return;
     if (key === ArrowKeys.Left && currentScreen() > 0) {
       setCurrentScreen(state => state - 1);
-    } else if (key === ArrowKeys.Right && currentScreen() < (screens.length - 1)) {
+    } else if (key === ArrowKeys.Right && currentScreen() < (screens().length - 1)) {
       setCurrentScreen(state => state + 1);
     }
   }
@@ -53,7 +54,7 @@ export default function ScreenGroup(props) {
     if (!direction) return;
     if (direction === TouchSwipeDirections.right && currentScreen() > 0) {
       setCurrentScreen(state => state - 1);
-   } else if (direction === TouchSwipeDirections.left && currentScreen() < (screens.length - 1)) {
+   } else if (direction === TouchSwipeDirections.left && currentScreen() < (screens().length - 1)) {
       setCurrentScreen(state => state + 1);
    } else return;
   }
@@ -70,13 +71,13 @@ export default function ScreenGroup(props) {
   return (
     <div class="screen-group">
       <div class="screen-group-tabs" style={{ display: isPopoverShow() ? "none": "inline-block"}}>
-        <For each={screens}>
+        <For each={screens()}>
           {(item, index) => <span class={getTabClass(index)}></span>}
         </For>
       </div>
-      <For each={screens}>
+      <For each={screens()}>
         {(item, index) => <div class="screen-group-item" style={calculatePosition(index)}>
-            <Screen data={item}/>
+            <Screen config={item}/>
           </div>}
       </For>
     </div>
