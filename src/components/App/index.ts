@@ -1,10 +1,4 @@
-import App from "./App";
-import { PopoverGroupContext, PopoverGroupProvidor } from "./App";
-import type { PopoverContextState } from "./App";
-export { 
-    App,
-    PopoverGroupContext,
-    PopoverGroupProvidor,
-    PopoverContextState
-};
-export default App;
+export { default as App } from "./App";
+export type { appConfig } from "./App";
+export { AppContext, AppProvider, AppMode } from "./AppContext";
+export type { AppContextState } from "./AppContext";

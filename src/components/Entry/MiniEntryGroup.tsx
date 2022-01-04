@@ -1,27 +1,31 @@
-import { createSignal, For, useContext } from "solid-js";
-import { PopoverGroupContext, PopoverContextState } from '../App';
+import { createMemo, For, useContext } from "solid-js";
 import type { BookmarkEntryConfig } from './BookmarkEntry';
 import type { BaseEntryConfig } from './Entry';
 import { EntryTitle } from '../Entry';
+import { ScreenLayerTypes } from "../../utils/constants";
+import { ScreenLayerManagerContext } from "../ScreenLayerManager";
+import type { ScreenLayerContextState } from "../ScreenLayerManager";
 
 interface MiniEntryGroupConfig {
-  type: string,
+  readonly id: string,
+  readonly type: string,
   name: string,
   items: (BaseEntryConfig | BookmarkEntryConfig)[]
 }
 
 export default function MiniEntryGroup(props) {
-  const { showPopoverGroup, setItems, setName } = useContext(PopoverGroupContext) as PopoverContextState;
-  const [config, setConfig] = createSignal(props.config as MiniEntryGroupConfig);
+  const { showLayer } = useContext(ScreenLayerManagerContext) as ScreenLayerContextState
+  const config = createMemo(() => props.config as MiniEntryGroupConfig);
   function handleClick() {
-    setItems(config().items);
-    setName(config().name);
-    showPopoverGroup();
+    showLayer({
+      type: ScreenLayerTypes.groupPopover,
+      data: config()
+    });
   }
   return (
     <div class="mini-entry-group-wrapper">
       <div class="mini-entry-group-container" onClick={handleClick}>
-        <For each={config().items?.slice(0, 8)}>
+        <For each={config().items?.slice(0, 8)} children={<></>}>
           {(item) => <div 
             class="mini-entry-inner-app"
             style={{

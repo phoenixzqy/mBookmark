@@ -1,6 +1,6 @@
 import EntryTitle from './EntryTitle';
 import type { BaseEntryConfig } from './Entry';
-import { createSignal } from 'solid-js';
+import { createMemo } from 'solid-js';
 
 interface BookmarkEntryConfig extends BaseEntryConfig{
   url: string,
@@ -11,7 +11,7 @@ interface BookmarkEntryConfig extends BaseEntryConfig{
 }
 
 export default function BookmarkEntry(props) {
-  const [config, setConfig] = createSignal(props.config as BookmarkEntryConfig);
+  const config = createMemo(() => props.config as BookmarkEntryConfig);
   function handleClick() {
     window.open(config().url);
   }

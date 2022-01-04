@@ -30,7 +30,7 @@
             "QRScanner": {}
         }
     },
-    "screens": [
+    "homepages": [
         {
             "type": "feedly"
         },
@@ -38,9 +38,11 @@
             "type": "normal",
             "items": [
                 {
+                    "id": "b943abc2-5431-4774-9a99-ed4210fd682f",
                     "type": "miniEntryGroup",
                     "name": "Readings",
                     "items": [{
+                            "id": "ae85a034-e663-47df-8144-69dd6e65ab88",
                             "type": "bookmark",
                             "url": "https://feedly.com",
                             "icon": "https://feedly.com/favicon.ico",
@@ -49,6 +51,7 @@
                             "keywords": ["RSS", "readings"]
                         },
                         {
+                            "id": "734d85f5-4adc-4df5-8366-0104440c13db",
                             "type": "bookmark",
                             "url": "https://github.com/",
                             "icon": "https://github.githubassets.com/favicons/favicon.svg",
@@ -59,6 +62,7 @@
                     ]
                 },
                 {
+                    "id": "8a588f7a-51cd-4c6d-8b06-7f3f8bce1cf2",
                     "type": "miniEntryGroup",
                     "name": "Technology",
                     "items": [{
@@ -72,6 +76,7 @@
                     ]
                 },
                 {
+                    "id": "019d3dc5-83f8-4b96-8c3e-4e0f5687782a",
                     "type": "bookmark",
                     "url": "https://phoenixzqy.github.io",
                     "icon": "",

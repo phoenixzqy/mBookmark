@@ -9,9 +9,21 @@ export enum EntryTypes {
   bookemark = "bookmark",
   app = "app"
 }
-export enum ScreenTypes {
+export enum HomepageTypes {
   feedly = "feedly",
   normal = "normal",
   widgets = "widgets"
 }
-export const MiniEntryGroupType = "miniEntryGroup"
+export const MiniEntryGroupType = "miniEntryGroup";
+export enum PopoverTypes {
+  group,
+  addEntry,
+  editEntry,
+}
+export enum ScreenLayerTypes {
+  homepage = "homepage",
+  groupPopover = "groupPopover",
+  addBookmarkPopover = "addBookmarkPopover",
+  editBookmarkPopover = "editBookmarkPopover",
+  searchEntryPopover = "searchEntryPopover"
+}
