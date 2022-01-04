@@ -5,10 +5,10 @@ export const ScreenLayerManagerContext = createContext();
 
 interface ScreenLayerData {
   type: ScreenLayerTypes,
-  ref?: any,
-  data?: any,
-  show?: CallableFunction,
-  hide?: CallableFunction
+  ref?: any, // screen layer container html element ref, used for show/hide screen
+  data?: any, // data passed between layers
+  show?: CallableFunction, // custom show/hide function
+  hide?: CallableFunction  // custom show/hide function
 }
 
 interface ScreenLayerContextState {
