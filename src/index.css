@@ -1,7 +1,7 @@
 body {
   --wall-paper: url("./assets/default_wall_paper.jpg");
   --app-icon: url(./assets/dragon_icon_128x128.png);
-  --app-background-color: #0000002b;
+  --app-background-color: rgba(0, 0, 0, .3);
   --font-color: #fff;
   --animation-duration: .2s;
   --homepage-group-animation-duration: .4s;
@@ -139,7 +139,7 @@ body {
   width: 55px;
   cursor: pointer;
   display: grid;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.5);
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   border-radius: 15px;
@@ -211,6 +211,17 @@ body {
   width: 80%;
   height: 80%;
   padding: 25px;
+}
+.add-entry-popover-container > .row {
+  height: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.add-entry-popover-container .submit-button {
+  text-align: center;
 }
 .popovers {
   transition-duration: var(--animation-duration);
@@ -337,11 +348,9 @@ body {
 }
 .background-show {
   filter: none;
-  transform: scale(1);
 }
 .background-hide {
-  filter: blur(7px);
-  transform: scale(1.2);
+  filter: blur(25px);
 }
 .homepage-group {
   display: block;
@@ -378,4 +387,8 @@ body {
 }
 .homepage-group-tab-active {
     width: 30px;
+}
+.keywords-input-label-active {
+  transform: scale(0.8) !important;
+  color: #26a69a !important;
 }

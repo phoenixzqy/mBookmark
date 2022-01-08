@@ -1,13 +1,14 @@
-import { onMount, useContext } from "solid-js"
-import { appConfig, AppContext } from "."
-import type { AppContextState } from ".";
+import { AppContext, appConfig } from "."
 import { HomepageBackground, HomepageGroup } from "../Homepage";
-import sampleData from "../../utils/sampleData.json";
+import { createMemo, onMount, useContext } from "solid-js"
+
+import type { AppContextState } from ".";
 import { PopoverTypes } from "../../utils/constants";
 import { Popovers } from "../Popovers";
+import sampleData from "../../utils/sampleData.json";
 
 export default function AppWrapper() {
-  const { getUserHomepageConfig, setUserConfig } = useContext(AppContext) as AppContextState;
+  const { getUserHomepageConfig, setUserConfig, userConfig } = useContext(AppContext) as AppContextState;
   onMount(() => {
     setUserConfig(sampleData as appConfig);
   });
@@ -15,9 +16,9 @@ export default function AppWrapper() {
   return <>
     <HomepageBackground />
     {/* Preload all screen layers which are managed by screenLayerManager */}
-    <HomepageGroup config={getUserHomepageConfig()}/>
-    <Popovers config={{ type: PopoverTypes.group}} />
-    <Popovers config={{ type: PopoverTypes.addEntry}} />
-    <Popovers config={{ type: PopoverTypes.editEntry}} />
+    <HomepageGroup config={userConfig().homepages} />
+    <Popovers config={{ type: PopoverTypes.group }} />
+    <Popovers config={{ type: PopoverTypes.addEntry }} />
+    <Popovers config={{ type: PopoverTypes.editEntry }} />
   </>
 }

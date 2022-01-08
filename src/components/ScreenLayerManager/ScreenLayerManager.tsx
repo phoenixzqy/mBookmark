@@ -1,4 +1,5 @@
 import { createContext, createSignal } from "solid-js";
+
 import { ScreenLayerTypes } from "../../utils/constants";
 
 export const ScreenLayerManagerContext = createContext();
@@ -13,11 +14,11 @@ interface ScreenLayerData {
 
 interface ScreenLayerContextState {
   register: (screen: ScreenLayerData) => void,
-  layers: () => { ScreenLayerTypes: ScreenLayerData},
+  layers: () => { ScreenLayerTypes: ScreenLayerData },
   currentScreenLayer: () => ScreenLayerData,
   showLayer: (screen: ScreenLayerData) => void,
   backToPrevLayer: () => void,
-  goToNextLayer: () => void 
+  goToNextLayer: () => void
 }
 
 const defaultScreenLayer: ScreenLayerData = {
@@ -27,11 +28,11 @@ const defaultScreenLayer: ScreenLayerData = {
 export function ScreenLayerManagerProvider(props) {
   const [history, setHistory] = createSignal([] as ScreenLayerData[]);
   const [histroyIndex, setHistoryIndex] = createSignal(0); // indicate the position of current screen layer in history list
-  const [layers, setLayers] = createSignal({} as { ScreenLayerTypes: ScreenLayerData});
+  const [layers, setLayers] = createSignal({} as { ScreenLayerTypes: ScreenLayerData });
   const [currentScreenLayer, setCurrentScreenLayer] = createSignal(defaultScreenLayer);
 
   function showLayerHook(screen: ScreenLayerData) {
-    if (screen.show) { screen.show(); } 
+    if (screen.show) { screen.show(); }
     else if (screen.ref) {
       const refElement = screen.ref as HTMLElement;
       refElement.classList.remove("screen-layer-hide");
@@ -39,7 +40,7 @@ export function ScreenLayerManagerProvider(props) {
     }
   }
   function hideLayerHook(screen: ScreenLayerData) {
-    if (screen.hide) { screen.hide(); } 
+    if (screen.hide) { screen.hide(); }
     if (screen.ref) {
       const refElement = screen.ref as HTMLElement;
       refElement.classList.remove("screen-layer-show");
@@ -69,14 +70,14 @@ export function ScreenLayerManagerProvider(props) {
         });
       }
     },
-    showLayer( screen ) {
+    showLayer(screen) {
       if (!validateLayer(screen)) {
         console.error(`invalid/unregistered screen type: ${JSON.stringify(screen)}`);
         return;
       }
       if (currentScreenLayer().type === screen.type) return;
       hideLayerHook(currentScreenLayer());
-      const newScreenLayer: ScreenLayerData = { ...layers()[screen.type], ...screen};
+      const newScreenLayer: ScreenLayerData = { ...layers()[screen.type], ...screen };
       if (histroyIndex() === history().length - 1) {
         setHistory(prev => {
           prev.push(newScreenLayer);
@@ -125,4 +126,4 @@ export function ScreenLayerManagerProvider(props) {
 }
 
 
-export type { ScreenLayerContextState, ScreenLayerData};
+export type { ScreenLayerContextState, ScreenLayerData };
