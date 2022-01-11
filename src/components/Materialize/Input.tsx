@@ -5,8 +5,8 @@ import materialize from '../../utils/materialize';
 
 export function Input(props) {
   const id = generateElementId();
-  const { type = "text", onChange, onInput, style = {}, className = "" } = props;
-  const inputProps = { type, onChange, onInput };
+  const { type = "text", onChange, onInput, style = {}, className = "", ref } = props;
+  const inputProps = { type, onChange, onInput, ref };
   const value = createMemo(() => props.value)
 
   return (
@@ -73,8 +73,14 @@ export function Chips(props) {
     }
   });
   onCleanup(() => {
-    (inputEle() as HTMLElement).removeEventListener("focus", onFocuse);
-    (inputEle() as HTMLElement).removeEventListener("blur", () => onBlur);
+    try {
+      if (inputEle()) {
+        (inputEle() as HTMLElement).removeEventListener("focus", onFocuse);
+        (inputEle() as HTMLElement).removeEventListener("blur", () => onBlur);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   })
   return (
     <div class="input-field">

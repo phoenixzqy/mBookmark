@@ -20,11 +20,13 @@ export default function BookmarkEntry(props) {
   const { showLayer, backToPrevLayer, currentScreenLayer } = useContext(ScreenLayerManagerContext) as ScreenLayerContextState;
   const { removeEntry } = useContext(AppContext) as AppContextState;
   const config = createMemo(() => props.config as BookmarkEntryConfig);
+  const { id, ref, style = {}, isDraggable = false } = props;
+  const myProps = { id, ref, style };
   function handleClick() {
     window.open(config().url);
   }
   return (
-    <div class="entry-wrapper">
+    <div class="entry-wrapper" {...myProps} is-draggable={isDraggable ? true : false}>
       <Dropdown
         useContextMenu={true}
         options={{

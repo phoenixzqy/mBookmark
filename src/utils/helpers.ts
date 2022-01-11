@@ -43,3 +43,15 @@ export function generateUUID(): string {
 export function generateElementId(): string {
   return generateUUID().split("-")[0];
 }
+
+export interface elementSize {
+  x: number,
+  y: number
+}
+
+export function getElementSize(ele: HTMLElement): elementSize {
+  return {
+    x: ele.offsetWidth,
+    y: ele.offsetHeight
+  }
+}

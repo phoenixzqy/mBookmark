@@ -27,3 +27,7 @@ export enum ScreenLayerTypes {
   editBookmarkPopover = "editBookmarkPopover",
   searchEntryPopover = "searchEntryPopover"
 }
+export const entrySize = {
+  x: 90,
+  y: 110
+}

@@ -1,9 +1,8 @@
-import { createSignal } from "solid-js";
-import { HomepageTypes } from '../../utils/constants';
 import FeedlyHomepage from './FeedlyHomepage';
+import { HomepageTypes } from '../../utils/constants';
 import NormalHomepage from './NormalHomepage';
 import WidgetsHomepage from './WidgetsHomepage'
-
+import { createSignal } from "solid-js";
 
 interface BaseHomepageConfig {
   readonly type: HomepageTypes
@@ -12,9 +11,9 @@ interface BaseHomepageConfig {
 export default function Homepage(props) {
   const [config] = createSignal(props.config as BaseHomepageConfig);
   const HomepageTemplateMapper = {
-    [HomepageTypes.feedly]: <FeedlyHomepage config={config()}/>,
-    [HomepageTypes.normal]: <NormalHomepage config={config()}/>,
-    [HomepageTypes.widgets]: <WidgetsHomepage config={config()}/>
+    [HomepageTypes.feedly]: <FeedlyHomepage config={config()} {...props} />,
+    [HomepageTypes.normal]: <NormalHomepage config={config()} {...props} />,
+    [HomepageTypes.widgets]: <WidgetsHomepage config={config()} {...props} />
   }
   return <div class="homepage">
     {HomepageTemplateMapper[config().type]}

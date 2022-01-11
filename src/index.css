@@ -1,7 +1,7 @@
 body {
   --wall-paper: url("./assets/default_wall_paper.jpg");
   --app-icon: url(./assets/dragon_icon_128x128.png);
-  --app-background-color: rgba(0, 0, 0, .3);
+  --app-background-color: rgba(255, 255, 255, .7);
   --font-color: #fff;
   --animation-duration: .2s;
   --homepage-group-animation-duration: .4s;
@@ -90,9 +90,9 @@ body {
   border-radius: 10px;
   cursor: pointer;
   position: relative;
-  background-color: var(--app-background-color);
-  border: 1px solid #eee;
-  color: #eee;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #fff;
+  color: #fff;
   top: -10px;
 }
 .add-entry-button-container::before, .add-entry-button-container::after {
@@ -106,6 +106,7 @@ body {
   left: 50%;
   margin-left: -13px;
   border-radius: 3px;
+  margin-top: -1.5px;
 }
 .add-entry-button-container::after {
   transform: rotate(90deg);
@@ -139,7 +140,7 @@ body {
   width: 55px;
   cursor: pointer;
   display: grid;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.7);
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   border-radius: 15px;
@@ -181,12 +182,29 @@ body {
   position: relative;
   z-index: 100;
 }
+.group-popover-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
 .group-popover-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
   width: 280px;
   height: 340px;
+}
+.group-popover-page {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition-duration: var(--animation-duration);
 }
 .popover-title {
   position: absolute;
@@ -239,6 +257,8 @@ body {
   .group-popover-container {
     width: 480px;
     height: 540px;
+  }
+  .group-popover-page {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
   }
@@ -373,7 +393,7 @@ body {
     display: inline-block;
     width: 100%;
     position: absolute;
-    bottom: 10px;
+    bottom: 110px;
     text-align: center;
 }
 .homepage-group-tab {
@@ -384,6 +404,7 @@ body {
     border-radius: 5px;
     margin: 0 5px;
     transition-duration: var(--homepage-group-animation-duration);
+    border: 1px solid #5a5a5a;
 }
 .homepage-group-tab-active {
     width: 30px;

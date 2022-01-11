@@ -1,10 +1,11 @@
-import { createMemo, For, useContext } from "solid-js";
-import type { BookmarkEntryConfig } from './BookmarkEntry';
+import { For, createMemo, useContext } from "solid-js";
+
 import type { BaseEntryConfig } from './Entry';
+import type { BookmarkEntryConfig } from './BookmarkEntry';
 import { EntryTitle } from '../Entry';
-import { ScreenLayerTypes } from "../../utils/constants";
-import { ScreenLayerManagerContext } from "../ScreenLayerManager";
 import type { ScreenLayerContextState } from "../ScreenLayerManager";
+import { ScreenLayerManagerContext } from "../ScreenLayerManager";
+import { ScreenLayerTypes } from "../../utils/constants";
 
 interface MiniEntryGroupConfig {
   readonly id: string,
@@ -14,6 +15,7 @@ interface MiniEntryGroupConfig {
 }
 
 export default function MiniEntryGroup(props) {
+  const { isDraggable = false } = props;
   const { showLayer } = useContext(ScreenLayerManagerContext) as ScreenLayerContextState
   const config = createMemo(() => props.config as MiniEntryGroupConfig);
   function handleClick() {
@@ -23,10 +25,10 @@ export default function MiniEntryGroup(props) {
     });
   }
   return (
-    <div class="mini-entry-group-wrapper">
+    <div class="mini-entry-group-wrapper" is-draggable={isDraggable ? true : false}>
       <div class="mini-entry-group-container" onClick={handleClick}>
-        <For each={config().items?.slice(0, 8)} children={<></>}>
-          {(item) => <div 
+        <For each={config().items?.slice(0, 9)} children={<></>}>
+          {(item) => <div
             class="mini-entry-inner-app"
             style={{
               "background-image": `url("${item.icon}")`

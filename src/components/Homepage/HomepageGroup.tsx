@@ -1,38 +1,70 @@
-import { createSignal, useContext, For, onMount, onCleanup, createMemo } from "solid-js";
-import { ArrowKeys } from "../../utils/constants";
-import { getTouchSwipeDirection, TouchSwipeDirections, Coordinates} from "../../utils/helpers";
+import { ArrowKeys, HomepageTypes, entrySize } from "../../utils/constants";
+import { Coordinates, TouchSwipeDirections, elementSize, getElementSize, getTouchSwipeDirection } from '../../utils/helpers';
+import { For, createMemo, createSignal, onCleanup, onMount, useContext } from "solid-js";
+
 import type { BaseHomepageConfig } from './Homepage';
 import Homepage from './Homepage';
-import { ScreenLayerTypes } from "../../utils/constants";
-import { ScreenLayerManagerContext } from "../ScreenLayerManager";
+import { NormalHomepageConfig } from '.';
 import type { ScreenLayerContextState } from "../ScreenLayerManager";
+import { ScreenLayerManagerContext } from "../ScreenLayerManager";
+import { ScreenLayerTypes } from "../../utils/constants";
+
+function calculateScreenCapacity(size: elementSize) {
+  return Math.floor(size.x / entrySize.x) * Math.floor((size.y / entrySize.y) - 1);
+}
 
 export default function HomepageGroup(props) {
   const { defaultHomepage = 1 } = props;
   const { currentScreenLayer, register } = useContext(ScreenLayerManagerContext) as ScreenLayerContextState
-  const show = createMemo(() => currentScreenLayer().type === ScreenLayerTypes.homepage); 
+  const show = createMemo(() => currentScreenLayer().type === ScreenLayerTypes.homepage);
   const [currentHomepage, setCurrentHomepage] = createSignal(defaultHomepage);
-  const homepages = createMemo(() => props.config as BaseHomepageConfig[])
+  const [capacity, setCapacity] = createSignal(0);
+  const calculatedHomepages = createMemo(() => {
+    let config = props.config as BaseHomepageConfig[];
+    if (!capacity()) return config;
+    let normalPageConfig = config[defaultHomepage] as NormalHomepageConfig;
+    // 1. calculate the capacity based on app screen size
+    // 2. split "normal" page as needed
+    const normalPages = [];
+    for (let i = 0; i < normalPageConfig.items.length; i += capacity()) {
+      normalPages.push({
+        type: HomepageTypes.normal,
+        items: normalPageConfig.items.slice(i, i + capacity())
+      });
+    }
+    if (normalPageConfig.items.length === capacity()) {
+      // add an emptry page for add button
+      normalPages.push({
+        type: HomepageTypes.normal,
+        items: []
+      });
+    }
+    return [
+      config[0],
+      ...normalPages,
+      config[2]
+    ];
+  });
   function calculatePosition(index): Object {
     return {
       left: `${(index() - currentHomepage()) * 100}%`
     }
   }
-  
+
   function getTabClass(index): string {
     let className = "homepage-group-tab";
     if (index() === currentHomepage()) {
       return className + " homepage-group-tab-active";
     } else return className;
   }
-  
-  function handleKeyPress(event:KeyboardEvent): void {
+
+  function handleKeyPress(event: KeyboardEvent): void {
     if (!show()) return;
     const { key } = event;
     if (!key) return;
     if (key === ArrowKeys.Left && currentHomepage() > 0) {
       setCurrentHomepage(state => state - 1);
-    } else if (key === ArrowKeys.Right && currentHomepage() < (homepages().length - 1)) {
+    } else if (key === ArrowKeys.Right && currentHomepage() < (calculatedHomepages().length - 1)) {
       setCurrentHomepage(state => state + 1);
     }
   }
@@ -57,9 +89,16 @@ export default function HomepageGroup(props) {
     if (!direction) return;
     if (direction === TouchSwipeDirections.right && currentHomepage() > 0) {
       setCurrentHomepage(state => state - 1);
-   } else if (direction === TouchSwipeDirections.left && currentHomepage() < (homepages().length - 1)) {
+    } else if (direction === TouchSwipeDirections.left && currentHomepage() < (calculatedHomepages().length - 1)) {
       setCurrentHomepage(state => state + 1);
-   } else return;
+    } else return;
+  }
+  function handleResize() {
+    const newCapacity = calculateScreenCapacity(getElementSize(document.getElementById("app")));
+    if (newCapacity !== capacity()) {
+      setCapacity(newCapacity);
+      setCurrentHomepage(defaultHomepage)
+    }
   }
 
   let ref;
@@ -68,26 +107,35 @@ export default function HomepageGroup(props) {
       type: ScreenLayerTypes.homepage,
       ref
     });
+    const ele: HTMLElement = document.querySelector(".homepage-group");
     window.addEventListener("keydown", handleKeyPress);
-    window.addEventListener("touchstart", handleTouchStart);
-    window.addEventListener("touchend", handleTouchEnd);
+    ele.addEventListener("touchstart", handleTouchStart);
+    ele.addEventListener("touchend", handleTouchEnd);
+    window.addEventListener("resize", handleResize);
+    setCapacity(calculateScreenCapacity(getElementSize(document.getElementById("app"))))
   });
   onCleanup(() => {
-    window.removeEventListener("keydown", handleKeyPress)
-    window.removeEventListener("touchstart", handleTouchStart);
-    window.removeEventListener("touchend", handleTouchEnd);
+    try {
+      const ele: HTMLElement = document.querySelector(".homepage-group");
+      window.removeEventListener("keydown", handleKeyPress)
+      ele.removeEventListener("touchstart", handleTouchStart);
+      ele.removeEventListener("touchend", handleTouchEnd);
+      window.removeEventListener("resize", handleResize);
+    } catch (e) {
+      console.error(e);
+    }
   });
   return (
     <div ref={ref} class="homepage-group">
-      <div class="homepage-group-tabs" style={{ display: show() ? "inline-block" : "none"}}>
-        <For each={homepages()} children={<></>}>
+      <div class="homepage-group-tabs" style={{ display: show() ? "inline-block" : "none" }}>
+        <For each={calculatedHomepages()} children={<></>}>
           {(item, index) => <span class={getTabClass(index)}></span>}
         </For>
       </div>
-      <For each={homepages()} children={<></>}>
+      <For each={calculatedHomepages()} children={<></>}>
         {(item, index) => <div class="homepage-group-item" style={calculatePosition(index)}>
-            <Homepage config={item}/>
-          </div>}
+          <Homepage config={item} capacity={capacity()} />
+        </div>}
       </For>
     </div>
   );
