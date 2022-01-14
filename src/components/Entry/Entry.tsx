@@ -8,10 +8,9 @@ interface BaseEntryConfig {
 }
 
 export default function Entry(props) {
-  const { isDraggable = false } = props;
   const config = createMemo(() => props.config as BaseEntryConfig);
   const EntryTemplateMapper = {
-    [EntryTypes.bookemark]: <BookmarkEntry config={config()} isDraggable={isDraggable} />
+    [EntryTypes.bookemark]: <BookmarkEntry config={config()} />
   };
   return <>{EntryTemplateMapper[config().type]}</>
 }

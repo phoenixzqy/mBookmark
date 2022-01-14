@@ -49,7 +49,6 @@ body {
   }
 }
 .screen-layer-show {
-  transform: scale(1);
   opacity: 1;
   pointer-events: all;
   z-index: 100;
@@ -69,6 +68,7 @@ body {
   height: 100%;
   position: relative;
   min-width:0;
+  transition-duration: var(--animation-duration);
 }
 .entry-container {
   height: 55px;
@@ -82,6 +82,20 @@ body {
   background-size: 45px 45px;
   overflow: hidden;
   background-color: var(--app-background-color);
+  position: relative;
+}
+.entry-container::after {
+  content: "";
+  visibility: hidden;
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 50%);
+  pointer-events: none;
+}
+.entry-container:hover::after {
+  visibility:initial;
 }
 .add-entry-button-container {
   position: relative;
@@ -134,6 +148,7 @@ body {
   width: 100%;
   height: 100%;
   position: relative;
+  transition-duration: var(--animation-duration);
 }
 .mini-entry-group-container {
   height: 55px;
@@ -148,6 +163,23 @@ body {
   box-sizing: border-box;
   transition-duration: var(--animation-duration);
   overflow: hidden;
+  position: relative;
+}
+.mini-entry-group-container::after {
+  content: "";
+  visibility: hidden;
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 50%);
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.mini-entry-group-container:hover::after {
+  visibility: initial;
 }
 .mini-entry-inner-app {
   height: 13px;
@@ -161,6 +193,7 @@ body {
   border-radius: 4px;
   background-color: var(--app-background-color);
   overflow: hidden;
+  pointer-events: none;;
 }
 .mini-entry-inner-app:nth-child(n + 10) {
   display: none;
@@ -409,7 +442,38 @@ body {
 .homepage-group-tab-active {
     width: 30px;
 }
+.group-popover-tabs {
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+}
+.group-popover-tab {
+    display: inline-block;
+    height: 5px;
+    width: 5px;
+    background-color: white;
+    border-radius: 5px;
+    margin: 0 2.5px;
+    transition-duration: var(--homepage-group-animation-duration);
+}
+.group-popover-tab-active {
+    width: 15px;
+}
 .keywords-input-label-active {
   transform: scale(0.8) !important;
   color: #26a69a !important;
+}
+.mbm-dropdown-container {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+.mbm-dropdown-container ul {
+  display: block;
+  opacity: 1;
 }

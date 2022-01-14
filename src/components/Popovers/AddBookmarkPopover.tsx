@@ -1,11 +1,11 @@
 import { Button, Col, Input } from '../Materialize';
-import { EntryTypes, ScreenLayerTypes } from '../../utils/constants';
-import { createEffect, createMemo, createSignal, useContext } from 'solid-js';
+import { createMemo, createSignal, useContext } from 'solid-js';
 
 import { AppContext } from '../App';
 import type { AppContextState } from '../App';
 import { BookmarkEntryConfig } from '../Entry';
 import { Chips } from '../Materialize/Input';
+import { EntryTypes } from '../../utils/constants';
 import PopoverTitle from "./PopoverTitle";
 import { Row } from '../Materialize/Grid';
 import type { ScreenLayerContextState } from '../ScreenLayerManager';

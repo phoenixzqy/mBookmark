@@ -1,34 +1,46 @@
-## Usage
+# mBookmark
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+mBookmark is short for mobile-like bookmark
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+## TODOs
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+[x] Mobile like homepage design
+[x] add/edit/remove bookmark
+[x] app screen layer manager
+[x] entry group
+[x] screen layer history stack
+[x] page screen layer switch animation
+[x] app group
+[x] data structure design
+[x] normal homepage drag & drop based modification features
+[x] materialize UI integration
+[] Vite config
+[] gitpage sub-repo
+[] gist based DB
+[] localstorage based DB
+[x] boxEdge, detect dragging and hold event to change pages
+[x] fix dropdown menu
+[] edit group-popover/group title
+[] comments and documentation in code
+[] searchPopover
+[] RSS feed
+[] App screenLayer
+[] Live wallpaper
+[] widgets
+  [] search bar
+  [] world clock
+  [] weather
+  [] Douban music
+[] bottom Dock
+  [] fullscreen
+  [] Readme/intro doc
+  [] barcode scanner
+  [] setting
+[] APPs
+  [] Readme/intro doc
+  [] barcode scanner
+  [] settings
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm dev` or `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+[] make it into browser extension
+  [] add bookmark based on user current viewing website.
+[] touch events support

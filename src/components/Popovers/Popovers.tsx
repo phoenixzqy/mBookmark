@@ -1,14 +1,19 @@
-import { createMemo, onMount, useContext } from "solid-js";
 import { AddBookmarkPopover, EditBookmarkPopover, GroupPopover } from ".";
+import { AppContext, AppContextState } from "../App";
 import { PopoverTypes, ScreenLayerTypes } from "../../utils/constants";
-import { ScreenLayerManagerContext } from "../ScreenLayerManager";
+import { createMemo, onMount, useContext } from "solid-js";
+
+import { Draggable } from "../../utils/draggable";
 import type { ScreenLayerContextState } from '../ScreenLayerManager'
+import { ScreenLayerManagerContext } from "../ScreenLayerManager";
 
 interface PopoversConfig {
   type: PopoverTypes
 }
 
 export default function (props) {
+  let bgRef;
+  const { moveEntryOutFromMoniGroup } = useContext(AppContext) as AppContextState;
   const config = createMemo(() => props.config as PopoversConfig);
   const { backToPrevLayer, register } = useContext(ScreenLayerManagerContext) as ScreenLayerContextState;
   const PopoverMapper = {
@@ -27,10 +32,19 @@ export default function (props) {
       type: PopoverToScreenLayerMapper[config().type as PopoverTypes],
       ref
     });
+    Draggable.onDragMove(bgRef)
+    Draggable.onDragEnd(bgRef, (e, ele) => {
+      const data = Draggable.getData();
+      if (data && data.dragging) {
+        // move to the end
+        moveEntryOutFromMoniGroup(data.dragging.id, -1);
+        backToPrevLayer();
+      }
+    });
   });
   return (
     <div ref={ref} class="popovers">
-      <div class="popover-bg" onClick={backToPrevLayer}></div>
+      <div ref={bgRef} class="popover-bg" onClick={backToPrevLayer}></div>
       {PopoverMapper[config().type as PopoverTypes]}
     </div>
   );

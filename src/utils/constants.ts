@@ -5,6 +5,7 @@ export enum ArrowKeys {
   Right = "ArrowRight"
 }
 export const EscapeKey = "Escape";
+export const EnterKey = "Enter";
 export enum EntryTypes {
   bookemark = "bookmark",
   app = "app"
@@ -30,4 +31,8 @@ export enum ScreenLayerTypes {
 export const entrySize = {
   x: 90,
   y: 110
+}
+export const entryIconSize = {
+  x: 55,
+  y: 55
 }

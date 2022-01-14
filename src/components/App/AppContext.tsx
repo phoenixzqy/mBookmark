@@ -1,10 +1,11 @@
 import { BaseEntryConfig, BookmarkEntryConfig, MiniEntryGroupConfig } from "../Entry";
 import { BaseHomepageConfig, FeedlyHomepageConfig, NormalHomepageConfig, WidgetsHomepageConfig } from "../Homepage";
+import { EntryTypes, MiniEntryGroupType } from '../../utils/constants';
 import { createContext, createMemo, createSignal } from 'solid-js';
 
-import { MiniEntryGroupType } from "../../utils/constants";
 import type { appConfig } from ".";
 import appOptions from "../../config";
+import { generateUUID } from '../../utils/helpers';
 
 export const AppContext = createContext();
 
@@ -22,7 +23,9 @@ interface AppContextState {
   removeEntry: (id: string) => boolean, // true if removed the whole group, need back to previous screenLayer
   updateEntry: (entry: BookmarkEntryConfig) => void,
   updateMiniGroup: (id: string, miniGroup: MiniEntryGroupConfig) => void,
-  moveEntryIntoMiniGroup: (id: string, miniGroupId: string, index: number) => void,
+  moveEntryIntoMiniGroup: (id: string, miniGroupId: string) => void,
+  createMiniGroupBy2Entry: (id1: string, id2: string) => void,
+  reOrderEntries: (id1: string, type: ("before" | "after"), id2: string, groupId?: string) => void,
   moveEntryOutFromMoniGroup: (id: string, index: number) => void
 }
 
@@ -58,8 +61,12 @@ export function AppProvider(props) {
       if (items[i].type === MiniEntryGroupType) {
         for (let j in items[i].items) {
           if (id === items[i].items[j].id) {
-            return items[i].items.splice(j, 1)[0];
-
+            let entry = items[i].items.splice(j, 1)[0];
+            // remove emptry group
+            if (items[i].items.length === 0) {
+              items.splice(i, 1);
+            }
+            return entry;
           }
         }
       }
@@ -138,13 +145,68 @@ export function AppProvider(props) {
         return JSON.parse(JSON.stringify(conf));
       });
     },
-    moveEntryIntoMiniGroup: (id: string, miniGroupId: string, index: number) => {
+    moveEntryIntoMiniGroup: (id: string, miniGroupId: string) => {
       setUserConfig(conf => {
         let entry = removeEntryHelper(conf, id);
         let items = conf.homepages[1].items;
         for (let i in items) {
           if (miniGroupId === items[i].id && items[i].type === MiniEntryGroupType) {
-            items[i].items.splice(index, 0, entry);
+            items[i].items.push(entry);
+          }
+        }
+        return JSON.parse(JSON.stringify(conf));
+      });
+    },
+    createMiniGroupBy2Entry: (putId: string, intoId: string) => {
+      setUserConfig(conf => {
+        let putEntry = removeEntryHelper(conf, putId);
+        let items = conf.homepages[1].items;
+        for (let i in items) {
+          if (items[i].id === intoId && items[i].type !== MiniEntryGroupType) {
+            const intoEntry = items[i];
+            items[i] = {
+              id: generateUUID(),
+              type: MiniEntryGroupType,
+              name: "new group",
+              items: [intoEntry, putEntry]
+            } as MiniEntryGroupConfig;
+            break;
+          }
+        }
+        return JSON.parse(JSON.stringify(conf));
+      });
+    },
+    reOrderEntries: (id1: string, type: ("before" | "after"), id2: string, groupId?: string) => {
+      setUserConfig(conf => {
+        let items = conf.homepages[1].items;
+        if (groupId) {
+          loop1: for (let i in items) {
+            if (items[i].type !== MiniEntryGroupType || items[i].id !== groupId) continue;
+            // if user tries to remove the last item in group and add it back to previous group, do nothing
+            if (id2 === "last") {
+              if (items[i].items.length > 1) {
+                items[i].items.push(removeEntryHelper(conf, id1));
+              }
+              break;
+            } else {
+              for (let j in items[i].items) {
+                if (items[i].items[j].id === id2) {
+                  items[i].items.splice(type === "before" ? j : ~~j + 1, 0, removeEntryHelper(conf, id1));
+                  break loop1;
+                }
+              }
+            }
+          }
+        } else {
+          if (id2 === "last") {
+            items.push(removeEntryHelper(conf, id1));
+          } else {
+            for (let i in items) {
+              if (items[i].id === id2) {
+                items.splice(type === "before" ? i : ~~i + 1, 0, removeEntryHelper(conf, id1));
+                break;
+              }
+            }
           }
         }
         return JSON.parse(JSON.stringify(conf));
@@ -153,7 +215,11 @@ export function AppProvider(props) {
     moveEntryOutFromMoniGroup: (id: string, index: number) => {
       setUserConfig(conf => {
         let entry = removeEntryHelper(conf, id);
-        conf.homepages[1].items.splice(index, 0, entry);
+        if (index >= 0) {
+          conf.homepages[1].items.splice(index, 0, entry);
+        } else {
+          conf.homepages[1].items.push(entry);
+        }
         return JSON.parse(JSON.stringify(conf));
       });
     }

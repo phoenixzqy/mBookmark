@@ -1,93 +1,264 @@
 {
-    "siteConfig": {
-        "appearance": {
-            "wallpaper": null,
-            "background": null,
-            "themeColor": "#fff"
-        },
-        "widgets": {
-            "feedly": {
-                "theme": ""
-            },
-            "search": {
-                "engine": "bing"
-            },
-            "clock": {
-                "regions": [
-                    "local",
-                    "beijing"
-                ],
-                "theme": "digital"
-            },
-            "weather": {
-                "regions": [
-                    "local"
-                ],
-                "theme": "normal"
-            }
-        },
-        "apps": {
-            "QRScanner": {}
-        }
+  "siteConfig": {
+    "appearance": {
+      "wallpaper": null,
+      "background": null,
+      "themeColor": "#fff"
     },
-    "homepages": [
+    "widgets": {
+      "feedly": {
+        "theme": ""
+      },
+      "search": {
+        "engine": "bing"
+      },
+      "clock": {
+        "regions": [
+          "local",
+          "beijing"
+        ],
+        "theme": "digital"
+      },
+      "weather": {
+        "regions": [
+          "local"
+        ],
+        "theme": "normal"
+      }
+    },
+    "apps": {
+      "QRScanner": {}
+    }
+  },
+  "homepages": [
+    {
+      "type": "feedly"
+    },
+    {
+      "type": "normal",
+      "items": [
         {
-            "type": "feedly"
+          "id": "b943abc2-5431-4774-9a99-ed4210fd682f",
+          "type": "miniEntryGroup",
+          "name": "Readings",
+          "items": [
+            {
+              "id": "ae85a034-e663-47df-8144-69dd6e65ab01",
+              "type": "bookmark",
+              "url": "https://feedly.com",
+              "icon": "https://feedly.com/favicon.ico",
+              "name": "Feedly",
+              "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
+              "keywords": [
+                "RSS",
+                "readings"
+              ]
+            },
+            {
+              "id": "734d85f5-4adc-4df5-8366-0104440c1302",
+              "type": "bookmark",
+              "url": "https://github.com/",
+              "icon": "https://github.githubassets.com/favicons/favicon.svg",
+              "name": "Github",
+              "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
+              "keywords": [
+                "tech",
+                "readings"
+              ]
+            },
+            {
+              "id": "ae85a034-e663-47df-8144-69dd6e65ab03",
+              "type": "bookmark",
+              "url": "https://feedly.com",
+              "icon": "https://feedly.com/favicon.ico",
+              "name": "Feedly",
+              "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
+              "keywords": [
+                "RSS",
+                "readings"
+              ]
+            },
+            {
+              "id": "734d85f5-4adc-4df5-8366-0104440c1304",
+              "type": "bookmark",
+              "url": "https://github.com/",
+              "icon": "https://github.githubassets.com/favicons/favicon.svg",
+              "name": "Github",
+              "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
+              "keywords": [
+                "tech",
+                "readings"
+              ]
+            },
+            {
+              "id": "ae85a034-e663-47df-8144-69dd6e65ab05",
+              "type": "bookmark",
+              "url": "https://feedly.com",
+              "icon": "https://feedly.com/favicon.ico",
+              "name": "Feedly",
+              "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
+              "keywords": [
+                "RSS",
+                "readings"
+              ]
+            },
+            {
+              "id": "734d85f5-4adc-4df5-8366-0104440c1306",
+              "type": "bookmark",
+              "url": "https://github.com/",
+              "icon": "https://github.githubassets.com/favicons/favicon.svg",
+              "name": "Github",
+              "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
+              "keywords": [
+                "tech",
+                "readings"
+              ]
+            },
+            {
+              "id": "ae85a034-e663-47df-8144-69dd6e65ab07",
+              "type": "bookmark",
+              "url": "https://feedly.com",
+              "icon": "https://feedly.com/favicon.ico",
+              "name": "Feedly",
+              "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
+              "keywords": [
+                "RSS",
+                "readings"
+              ]
+            },
+            {
+              "id": "734d85f5-4adc-4df5-8366-0104440c1308",
+              "type": "bookmark",
+              "url": "https://github.com/",
+              "icon": "https://github.githubassets.com/favicons/favicon.svg",
+              "name": "Github",
+              "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
+              "keywords": [
+                "tech",
+                "readings"
+              ]
+            },
+            {
+              "id": "ae85a034-e663-47df-8144-69dd6e65ab09",
+              "type": "bookmark",
+              "url": "https://feedly.com",
+              "icon": "https://feedly.com/favicon.ico",
+              "name": "Feedly",
+              "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
+              "keywords": [
+                "RSS",
+                "readings"
+              ]
+            },
+            {
+              "id": "734d85f5-4adc-4df5-8366-0104440c1310",
+              "type": "bookmark",
+              "url": "https://github.com/",
+              "icon": "https://github.githubassets.com/favicons/favicon.svg",
+              "name": "Github",
+              "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
+              "keywords": [
+                "tech",
+                "readings"
+              ]
+            },
+            {
+              "id": "734d85f5-4adc-4df5-8366-0104440c1311",
+              "type": "bookmark",
+              "url": "https://github.com/",
+              "icon": "https://github.githubassets.com/favicons/favicon.svg",
+              "name": "Github",
+              "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
+              "keywords": [
+                "tech",
+                "readings"
+              ]
+            },
+            {
+              "id": "734d85f5-4adc-4df5-8366-0104440c1312",
+              "type": "bookmark",
+              "url": "https://github.com/",
+              "icon": "https://github.githubassets.com/favicons/favicon.svg",
+              "name": "Github",
+              "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
+              "keywords": [
+                "tech",
+                "readings"
+              ]
+            },
+            {
+              "id": "734d85f5-4adc-4df5-8366-0104440c1313",
+              "type": "bookmark",
+              "url": "https://github.com/",
+              "icon": "https://github.githubassets.com/favicons/favicon.svg",
+              "name": "Github",
+              "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
+              "keywords": [
+                "tech",
+                "readings"
+              ]
+            },
+            {
+              "id": "734d85f5-4adc-4df5-8366-0104440c1314",
+              "type": "bookmark",
+              "url": "https://github.com/",
+              "icon": "https://github.githubassets.com/favicons/favicon.svg",
+              "name": "Github",
+              "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
+              "keywords": [
+                "tech",
+                "readings"
+              ]
+            }
+          ]
         },
         {
-            "type": "normal",
-            "items": [
-                {
-                    "id": "b943abc2-5431-4774-9a99-ed4210fd682f",
-                    "type": "miniEntryGroup",
-                    "name": "Readings",
-                    "items": [{
-                            "id": "ae85a034-e663-47df-8144-69dd6e65ab88",
-                            "type": "bookmark",
-                            "url": "https://feedly.com",
-                            "icon": "https://feedly.com/favicon.ico",
-                            "name": "Feedly",
-                            "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
-                            "keywords": ["RSS", "readings"]
-                        },
-                        {
-                            "id": "734d85f5-4adc-4df5-8366-0104440c13db",
-                            "type": "bookmark",
-                            "url": "https://github.com/",
-                            "icon": "https://github.githubassets.com/favicons/favicon.svg",
-                            "name": "Github",
-                            "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
-                            "keywords": ["tech", "readings"]
-                        }
-                    ]
-                },
-                {
-                    "id": "8a588f7a-51cd-4c6d-8b06-7f3f8bce1cf2",
-                    "type": "miniEntryGroup",
-                    "name": "Technology",
-                    "items": [{
-                            "type": "bookmark",
-                            "url": "https://juejin.cn/",
-                            "icon": "https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web//static/favicons/apple-touch-icon.png",
-                            "name": "掘金",
-                            "description": "掘金是一个帮助开发者成长的社区,是给开发者用的 Hacker News,给设计师用的 Designer News,和给产品经理用的 Medium。掘金的技术文章由稀土上聚集的技术大牛和极客共同编辑为你筛选出最优质的干货,其中包括：Android、iOS、前端、后端等方面的内容。用户每天都可以在这里找到技术世界的头条内容。与此同时,掘金内还有沸点、掘金翻译计划、线下活动、专栏文章等内容。即使你是 GitHub、StackOverflow、开源中国的用户,我们相信你也可以在这里有所收获。",
-                            "keywords": ["tech", "readings"]
-                        }
-                    ]
-                },
-                {
-                    "id": "019d3dc5-83f8-4b96-8c3e-4e0f5687782a",
-                    "type": "bookmark",
-                    "url": "https://phoenixzqy.github.io",
-                    "icon": "",
-                    "name": "Felix Zhao's playland",
-                    "description": "Felix's blog site, powered by Github page",
-                    "keywords": ["blog", "readings"]
-                }
-            ]
+          "id": "8a588f7a-51cd-4c6d-8b06-7f3f8bce1cf2",
+          "type": "miniEntryGroup",
+          "name": "Technology",
+          "items": [
+            {
+              "id": "734d85f5-4adc-4df5-8366-0104440c13aa",
+              "type": "bookmark",
+              "url": "https://juejin.cn/",
+              "icon": "https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web//static/favicons/apple-touch-icon.png",
+              "name": "掘金",
+              "description": "掘金是一个帮助开发者成长的社区,是给开发者用的 Hacker News,给设计师用的 Designer News,和给产品经理用的 Medium。掘金的技术文章由稀土上聚集的技术大牛和极客共同编辑为你筛选出最优质的干货,其中包括：Android、iOS、前端、后端等方面的内容。用户每天都可以在这里找到技术世界的头条内容。与此同时,掘金内还有沸点、掘金翻译计划、线下活动、专栏文章等内容。即使你是 GitHub、StackOverflow、开源中国的用户,我们相信你也可以在这里有所收获。",
+              "keywords": [
+                "tech",
+                "readings"
+              ]
+            }
+          ]
         },
         {
-            "type": "widgets"
+          "id": "019d3dc5-83f8-4b96-8c3e-4e0f5687782a",
+          "type": "bookmark",
+          "url": "https://phoenixzqy.github.io",
+          "icon": "",
+          "name": "Felix Zhao's playland",
+          "description": "Felix's blog site, powered by Github page",
+          "keywords": [
+            "blog",
+            "readings"
+          ]
+        },
+        {
+          "id": "019d3dc5-83f8-4b96-8c3e-4e0f5687782b",
+          "type": "bookmark",
+          "url": "https://phoenixzqy.github.io",
+          "icon": "",
+          "name": "Felix Zhao's playland",
+          "description": "Felix's blog site, powered by Github page",
+          "keywords": [
+            "blog",
+            "readings"
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "type": "widgets"
+    }
+  ]
 }

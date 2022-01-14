@@ -5,6 +5,8 @@ import { For, Show, createMemo, createSignal, onCleanup, onMount, useContext } f
 
 import { AppContext } from '../App';
 import type { AppContextState } from '../App'
+import { DragHoldArea } from "../Materialize/DragHoldArea";
+import { Draggable } from "../../utils/draggable";
 import { NormalHomepageConfig } from "../Homepage";
 import PopoverTitle from './PopoverTitle';
 import type { ScreenLayerContextState } from "../ScreenLayerManager";
@@ -19,9 +21,10 @@ function calculatePageCapacity(size: elementSize) {
 }
 
 function GroupPopover(props) {
+  let ref;
   const { currentScreenLayer, layers } = useContext(ScreenLayerManagerContext) as ScreenLayerContextState;
+  const { getUserHomepageConfig, moveEntryOutFromMoniGroup, moveEntryIntoMiniGroup, reOrderEntries } = useContext(AppContext) as AppContextState;
   const show = createMemo(() => currentScreenLayer().type === ScreenLayerTypes.groupPopover);
-  const { getUserHomepageConfig } = useContext(AppContext) as AppContextState;
   const { defaultPage = 0 } = props;
   const [currentPage, setCurrentPage] = createSignal(defaultPage);
   const [capacity, setCapacity] = createSignal(0);
@@ -56,7 +59,7 @@ function GroupPopover(props) {
     for (let i = 0; i < items.length; i += capacity()) {
       pages.push({ items: items.slice(i, i + capacity()) });
     }
-    if (items.length === capacity()) {
+    if (items.length % capacity() === 0) {
       // add an emptry page for add button
       pages.push({ items: [] });
     }
@@ -113,10 +116,39 @@ function GroupPopover(props) {
   onMount(() => {
     setCapacity(calculatePageCapacity(getElementSize(document.querySelector(".group-popover-wrapper"))));
     const ele: HTMLElement = document.querySelector(".group-popover-wrapper");
+    window.removeEventListener("keydown", handleKeyPress)
+    ele.removeEventListener("touchstart", handleTouchStart);
+    ele.removeEventListener("touchend", handleTouchEnd);
+    window.removeEventListener("resize", handleResize);
     window.addEventListener("keydown", handleKeyPress);
     ele.addEventListener("touchstart", handleTouchStart);
     ele.addEventListener("touchend", handleTouchEnd);
     window.addEventListener("resize", handleResize);
+    // drag n drop
+    // only listen to drag n drop events in app container
+    Draggable.onDragMove(ref);
+    Draggable.onDragEnd(ref, (e, ele) => {
+      ele.style.transform = "scale(1)";
+      // handle drop here
+      const data = Draggable.getData();
+      if (data && data.dragging) {
+        if (data.dragging.type !== MiniEntryGroupType && data.dropOn?.type === MiniEntryGroupType) {
+          moveEntryIntoMiniGroup(data.dragging.id, data.dropOn.id);
+        } else if (data.dragging.type !== MiniEntryGroupType && data.dropOn) {
+          // will NOT allow to make sub-groups in group, so move the dragging entry in front of dragOn item
+          reOrderEntries(data.dragging.id, "before", data.dropOn.id, entryGroupId());
+        } else if (data.dragging.type !== MiniEntryGroupType && data.dropOn) {
+          // EntryTypes
+        } else if (data.dropBefore) {
+          reOrderEntries(data.dragging.id, "before", data.dropBefore.id, entryGroupId());
+        } else if (data.dropAfter) {
+          reOrderEntries(data.dragging.id, "after", data.dropAfter.id, entryGroupId());
+        } else {
+          // move to the end
+          reOrderEntries(data.dragging.id, "after", "last", entryGroupId());
+        }
+      }
+    });
   });
   onCleanup(() => {
     try {
@@ -125,23 +157,68 @@ function GroupPopover(props) {
       ele.removeEventListener("touchstart", handleTouchStart);
       ele.removeEventListener("touchend", handleTouchEnd);
       window.removeEventListener("resize", handleResize);
+      Draggable.clearDragMove(ref);
+      Draggable.clearDragEnd(ref);
     } catch (e) {
       console.error(e)
     }
   });
+
+  function getTabClass(index): string {
+    let className = "group-popover-tab";
+    if (index() === currentPage()) {
+      return className + " group-popover-tab-active";
+    } else return className;
+  }
   return (
-    <div class="popover-container group-popover-container">
+    <div ref={ref} class="popover-container group-popover-container">
       <PopoverTitle name={title()} />
+      <div class="group-popover-tabs" style={{ display: show() ? "inline-block" : "none" }}>
+        <For each={calculatedPages()} children={<></>}>
+          {(item, index) => <span class={getTabClass(index)}></span>}
+        </For>
+      </div>
       <div class="group-popover-wrapper">
+
         <For each={calculatedPages()} children={<></>}>
           {(page, index) => (
             <div class="group-popover-page" style={calculatePosition(index)} >
+              <DragHoldArea
+                style={{
+                  display: "blcok",
+                  height: "100%",
+                  width: "30px",
+                  position: "absolute",
+                  top: "0",
+                  left: "0"
+                }}
+                callback={(e) => {
+                  // the first normal page can't navigate to the left
+                  if (index() === 0) return;
+                  setCurrentPage(state => state - 1);
+                }}
+              ></DragHoldArea>
               <For each={page.items} children={<></>}>
                 {item => <Entry config={item} />}
               </For>
               <Show when={page.items.length < capacity()} children={<></>}>
                 <AddEntryButton parentId={entryGroupId()} />
               </Show>
+              <DragHoldArea
+                style={{
+                  display: "blcok",
+                  height: "100%",
+                  width: "30px",
+                  position: "absolute",
+                  top: "0",
+                  right: "0"
+                }}
+                callback={(e) => {
+                  // the first normal page can't navigate to the left
+                  if (index() === calculatedPages().length - 1) return;
+                  setCurrentPage(state => state + 1);
+                }}
+              ></DragHoldArea>
             </div>
           )}
         </For>

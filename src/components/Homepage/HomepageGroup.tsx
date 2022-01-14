@@ -32,7 +32,7 @@ export default function HomepageGroup(props) {
         items: normalPageConfig.items.slice(i, i + capacity())
       });
     }
-    if (normalPageConfig.items.length === capacity()) {
+    if (normalPageConfig.items.length % capacity() === 0) {
       // add an emptry page for add button
       normalPages.push({
         type: HomepageTypes.normal,
@@ -108,6 +108,10 @@ export default function HomepageGroup(props) {
       ref
     });
     const ele: HTMLElement = document.querySelector(".homepage-group");
+    window.removeEventListener("keydown", handleKeyPress)
+    ele.removeEventListener("touchstart", handleTouchStart);
+    ele.removeEventListener("touchend", handleTouchEnd);
+    window.removeEventListener("resize", handleResize);
     window.addEventListener("keydown", handleKeyPress);
     ele.addEventListener("touchstart", handleTouchStart);
     ele.addEventListener("touchend", handleTouchEnd);
@@ -134,7 +138,7 @@ export default function HomepageGroup(props) {
       </div>
       <For each={calculatedHomepages()} children={<></>}>
         {(item, index) => <div class="homepage-group-item" style={calculatePosition(index)}>
-          <Homepage config={item} capacity={capacity()} />
+          <Homepage config={item} capacity={capacity()} pageNumber={index()} pageCount={calculatedHomepages().length} setCurrentHomepage={setCurrentHomepage} />
         </div>}
       </For>
     </div>
