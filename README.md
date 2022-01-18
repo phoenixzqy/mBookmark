@@ -17,7 +17,7 @@ mBookmark is short for mobile-like bookmark
 - [x] boxEdge, detect dragging and hold event to change pages
 - [x] fix dropdown menu
 - [x] edit group-popover/group title
-- [ ] searchPopover
+- [x] searchPopover
 - [ ] input validations
 - [ ] fix background blur border css issue
 - [ ] login page
