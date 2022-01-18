@@ -18,28 +18,28 @@ mBookmark is short for mobile-like bookmark
 - [x] fix dropdown menu
 - [x] edit group-popover/group title
 - [x] searchPopover
+- [ ] App screenLayer
+- [ ] APPs
+  - [ ] * Readme/intro doc
+  - [ ] * barcode scanner
+  - [ ] * settings
+- [ ] bottom Dock
+  - [ ] * fullscreen
+  - [ ] * Readme/intro doc
+  - [ ] * barcode scanner
+  - [ ] * setting
 - [ ] input validations
 - [ ] fix background blur border css issue
 - [ ] login page
 - [ ] gist based DB
 - [ ] localstorage based DB
 - [ ] RSS feed
-- [ ] App screenLayer
 - [ ] Live wallpaper
 - [ ] widgets
   - [ ] * search bar
   - [ ] * world clock
   - [ ] * weather
   - [ ] * Douban music
-- [ ] bottom Dock
-  - [ ] * fullscreen
-  - [ ] * Readme/intro doc
-  - [ ] * barcode scanner
-  - [ ] * setting
-- [ ] APPs
-  - [ ] * Readme/intro doc
-  - [ ] * barcode scanner
-  - [ ] * settings
 
 - [ ] make it into browser extension
   - [ ] * add bookmark based on user current viewing website.
