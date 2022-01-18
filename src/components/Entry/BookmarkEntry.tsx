@@ -78,11 +78,6 @@ export default function BookmarkEntry(props) {
       });
     });
   });
-  onCleanup(() => {
-    Draggable.clearDragStart(ref);
-    Draggable.clearDragEnter(ref);
-    Draggable.clearDragLeave(ref);
-  });
 
   return (
     <div ref={ref} class="entry-wrapper" {...myProps} is-draggable is-hoverable is-droppable entry-type={EntryTypes.bookemark}>
@@ -123,7 +118,8 @@ export default function BookmarkEntry(props) {
             "background-image": config().icon ? `url("${config().icon}")` : undefined
           }}
           onClick={handleClick}
-        ></div>
+        >
+        </div>
       </Dropdown>
       <EntryTitle name={config().name} />
     </div >

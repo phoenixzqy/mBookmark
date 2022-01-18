@@ -79,8 +79,6 @@ class Draggable {
   }
   private mouseUpHandler(e: MouseEvent, callback?: (e: MouseEvent, target: HTMLElement) => void) {
     if (!this.draggingElement) return;
-    e.preventDefault();
-    e.stopPropagation();
     this.isDragging = false;
     this.initKeyDownPos = [...initPos];
     this.currentKeyPos = [...initPos];
@@ -117,53 +115,35 @@ class Draggable {
     this.data = undefined;
   }
   public onDragStart(ele: HTMLElement, callback?: (e: MouseEvent, target: HTMLElement) => void) {
-    ele.onmousedown = e => {
+    ele.addEventListener("mousedown", e => {
       this.mouseDownHandler(e, callback);
-    };
+    });
   }
   public onDragMove(ele: HTMLElement, callback?: (e: MouseEvent, target: HTMLElement) => void) {
-    ele.onmousemove = e => {
+    ele.addEventListener("mousemove", e => {
       this.mouseMoveHandler(e, callback);
-    };
+    });
   }
   public onDragEnd(ele: HTMLElement, callback?: (e: MouseEvent, target: HTMLElement) => void) {
-    ele.onmouseup = e => {
+    ele.addEventListener("mouseup", e => {
       this.mouseUpHandler(e, callback);
       this.clearData();
-    };
+    });
   }
   public onDragEnter(ele: HTMLElement, callback?: (e: MouseEvent, target: HTMLElement, dragingEle: HTMLElement) => void) {
-    ele.onmouseenter = e => {
+    ele.addEventListener("mouseenter", e => {
       this.mouseEnterHandler(e, callback);
-    }
+    });
   }
   public onDragOver(ele: HTMLElement, callback?: (e: MouseEvent, target: HTMLElement, dragingEle: HTMLElement) => void) {
-    ele.onmouseover = e => {
+    ele.addEventListener("mouseover", e => {
       this.mouseOverHandler(e, callback);
-    }
-  }
+    })
+  };
   public onDragLeave(ele: HTMLElement, callback?: (e: MouseEvent, target: HTMLElement, dragingEle: HTMLElement) => void) {
-    ele.onmouseleave = e => {
+    ele.addEventListener("mouseleave", e => {
       this.mouseLeaveHandler(e, callback);
-    }
-  }
-  public clearDragStart(ele: HTMLElement) {
-    ele.onmousedown = null;
-  }
-  public clearDragMove(ele: HTMLElement) {
-    ele.onmousemove = null;
-  }
-  public clearDragEnd(ele: HTMLElement) {
-    ele.onmouseup = null;
-  }
-  public clearDragEnter(ele: HTMLElement) {
-    ele.onmouseenter = null;
-  }
-  public clearDragOver(ele: HTMLElement) {
-    ele.onmouseover = null;
-  }
-  public clearDragLeave(ele: HTMLElement) {
-    ele.onmouseleave = null;
+    });
   }
 }
 

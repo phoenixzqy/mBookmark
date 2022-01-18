@@ -14,15 +14,15 @@ mBookmark is short for mobile-like bookmark
 - [x] data structure design
 - [x] normal homepage drag & drop based modification features
 - [x] materialize UI integration
-- [ ] Vite config
-- [ ] gitpage sub-repo
-- [ ] gist based DB
-- [ ] localstorage based DB
 - [x] boxEdge, detect dragging and hold event to change pages
 - [x] fix dropdown menu
-- [ ] edit group-popover/group title
-- [ ] comments and documentation in code
+- [x] edit group-popover/group title
 - [ ] searchPopover
+- [ ] input validations
+- [ ] fix background blur border css issue
+- [ ] login page
+- [ ] gist based DB
+- [ ] localstorage based DB
 - [ ] RSS feed
 - [ ] App screenLayer
 - [ ] Live wallpaper
@@ -44,3 +44,6 @@ mBookmark is short for mobile-like bookmark
 - [ ] make it into browser extension
   - [ ] * add bookmark based on user current viewing website.
 - [ ] touch events support
+- [ ] Vite config
+- [ ] gitpage sub-repo
+- [ ] comments and documentation in code

@@ -22,7 +22,7 @@ interface AppContextState {
   addEntry: (entry: (BookmarkEntryConfig | BaseEntryConfig), id?: string) => void,
   removeEntry: (id: string) => boolean, // true if removed the whole group, need back to previous screenLayer
   updateEntry: (entry: BookmarkEntryConfig) => void,
-  updateMiniGroup: (id: string, miniGroup: MiniEntryGroupConfig) => void,
+  updateMiniGroup: (id: string, miniGroup: Partial<MiniEntryGroupConfig>) => void,
   moveEntryIntoMiniGroup: (id: string, miniGroupId: string) => void,
   createMiniGroupBy2Entry: (id1: string, id2: string) => void,
   reOrderEntries: (id1: string, type: ("before" | "after"), id2: string, groupId?: string) => void,
@@ -134,7 +134,7 @@ export function AppProvider(props) {
         return JSON.parse(JSON.stringify(conf));
       });
     },
-    updateMiniGroup: (id: string, miniGroup: MiniEntryGroupConfig) => {
+    updateMiniGroup: (id: string, miniGroup: Partial<MiniEntryGroupConfig>) => {
       setUserConfig(conf => {
         let items = conf.homepages[1].items;
         for (let i in items) {

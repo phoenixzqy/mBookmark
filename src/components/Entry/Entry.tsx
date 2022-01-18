@@ -9,10 +9,17 @@ interface BaseEntryConfig {
 
 export default function Entry(props) {
   const config = createMemo(() => props.config as BaseEntryConfig);
-  const EntryTemplateMapper = {
-    [EntryTypes.bookemark]: <BookmarkEntry config={config()} />
-  };
-  return <>{EntryTemplateMapper[config().type]}</>
+  const { style = {} } = props;
+  const myProps = { style };
+  function getEntryTemplate(type: EntryTypes) {
+    switch (type) {
+      case EntryTypes.bookemark:
+        return <BookmarkEntry config={config()} {...myProps} />
+      default:
+        return null;
+    }
+  }
+  return <>{getEntryTemplate(config().type)}</>
 }
 
 export type { BaseEntryConfig };

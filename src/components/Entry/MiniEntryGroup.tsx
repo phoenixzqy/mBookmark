@@ -75,11 +75,6 @@ export default function MiniEntryGroup(props) {
       });
     });
   });
-  onCleanup(() => {
-    Draggable.clearDragStart(ref);
-    Draggable.clearDragEnter(ref);
-    Draggable.clearDragLeave(ref);
-  });
 
   return (
     <div ref={ref} class="mini-entry-group-wrapper" is-draggable is-hoverable is-droppable entry-type={MiniEntryGroupType}>

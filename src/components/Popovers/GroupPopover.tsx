@@ -30,6 +30,7 @@ function GroupPopover(props) {
   const [capacity, setCapacity] = createSignal(0);
   const [entryGroupId, setEntryGroupId] = createSignal("");
   const [title, setTitle] = createSignal("");
+  const [mounted, setMounted] = createSignal(false);
   const calculatedPages = createMemo(() => {
     let id = "";
     if (currentScreenLayer().type === ScreenLayerTypes.groupPopover) {
@@ -84,18 +85,40 @@ function GroupPopover(props) {
     x: 0,
     y: 0
   }
-  function handleTouchStart(event: TouchEvent) {
+  let touchStartTime: Date;
+  function handleTouchStart(event: TouchEvent | MouseEvent) {
     if (!show()) return;
-    touchStartCoordinates = {
-      x: event.changedTouches[0].screenX,
-      y: event.changedTouches[0].screenY,
+    touchStartTime = new Date();
+    if ((event as TouchEvent).changedTouches) {
+      touchStartCoordinates = {
+        x: (event as TouchEvent).changedTouches[0].screenX,
+        y: (event as TouchEvent).changedTouches[0].screenY,
+      }
+    } else {
+      touchStartCoordinates = {
+        x: (event as MouseEvent).screenX,
+        y: (event as MouseEvent).screenY,
+      }
     }
   }
-  function handleTouchEnd(event: TouchEvent) {
+  function handleTouchEnd(event: TouchEvent | MouseEvent) {
     if (!show()) return;
-    let touchEndCoordinates: Coordinates = {
-      x: event.changedTouches[0].screenX,
-      y: event.changedTouches[0].screenY,
+    let touchEndTime = new Date();
+    if (((touchEndTime as any) - (touchStartTime as any)) > 500) {
+      return;
+    }
+    touchStartTime = null;
+    let touchEndCoordinates = { x: -1, y: -1 }
+    if ((event as TouchEvent).changedTouches) {
+      touchEndCoordinates = {
+        x: (event as TouchEvent).changedTouches[0].screenX,
+        y: (event as TouchEvent).changedTouches[0].screenY,
+      }
+    } else {
+      touchEndCoordinates = {
+        x: (event as MouseEvent).screenX,
+        y: (event as MouseEvent).screenY,
+      }
     }
     const direction = getTouchSwipeDirection(touchStartCoordinates, touchEndCoordinates);
     if (!direction) return;
@@ -116,13 +139,11 @@ function GroupPopover(props) {
   onMount(() => {
     setCapacity(calculatePageCapacity(getElementSize(document.querySelector(".group-popover-wrapper"))));
     const ele: HTMLElement = document.querySelector(".group-popover-wrapper");
-    window.removeEventListener("keydown", handleKeyPress)
-    ele.removeEventListener("touchstart", handleTouchStart);
-    ele.removeEventListener("touchend", handleTouchEnd);
-    window.removeEventListener("resize", handleResize);
     window.addEventListener("keydown", handleKeyPress);
     ele.addEventListener("touchstart", handleTouchStart);
     ele.addEventListener("touchend", handleTouchEnd);
+    ele.addEventListener("mousedown", handleTouchStart);
+    ele.addEventListener("mouseup", handleTouchEnd);
     window.addEventListener("resize", handleResize);
     // drag n drop
     // only listen to drag n drop events in app container
@@ -156,9 +177,9 @@ function GroupPopover(props) {
       window.removeEventListener("keydown", handleKeyPress)
       ele.removeEventListener("touchstart", handleTouchStart);
       ele.removeEventListener("touchend", handleTouchEnd);
+      ele.removeEventListener("mousedown", handleTouchStart);
+      ele.removeEventListener("mouseup", handleTouchEnd);
       window.removeEventListener("resize", handleResize);
-      Draggable.clearDragMove(ref);
-      Draggable.clearDragEnd(ref);
     } catch (e) {
       console.error(e)
     }
@@ -172,7 +193,7 @@ function GroupPopover(props) {
   }
   return (
     <div ref={ref} class="popover-container group-popover-container">
-      <PopoverTitle name={title()} />
+      <PopoverTitle name={title()} groupId={entryGroupId()} />
       <div class="group-popover-tabs" style={{ display: show() ? "inline-block" : "none" }}>
         <For each={calculatedPages()} children={<></>}>
           {(item, index) => <span class={getTabClass(index)}></span>}

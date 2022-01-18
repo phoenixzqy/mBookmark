@@ -61,3 +61,40 @@ export function offset(el: HTMLElement) {
     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
 }
+
+export function debounce(fnToDebounce, delay) {
+  let scheduleId
+  const debounced = (...args) => {
+    const context = this
+    const deferredCall = fnToDebounce.apply(context, args)
+    if (scheduleId) {
+      clearTimeout(scheduleId)
+    }
+    scheduleId = setTimeout(deferredCall, delay)
+  }
+  return debounced
+}
+export function throttle(fn, delay) {
+  let scheduledId
+  return function throttled() {
+    const context = this
+    const args = arguments
+    const throttledCall = fn.apply(context, args)
+    if (scheduledId) return
+    scheduledId = setTimeout(() => {
+      throttledCall()
+      clearTimeout(scheduledId)
+    }, delay)
+  }
+}
+
+export function highlight(str: string, phrase: string): HTMLElement {
+  let reg = new RegExp(phrase, 'gi');
+  let ele = document.createElement("div");
+  let matches = str.match(reg) || [];
+  matches.forEach(m => {
+    str = str.replace(m, `<span class="highlight">${m}</span>`)
+  });
+  ele.innerHTML = str;
+  return ele;
+}

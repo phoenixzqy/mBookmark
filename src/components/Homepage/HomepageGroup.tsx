@@ -15,7 +15,7 @@ function calculateScreenCapacity(size: elementSize) {
 
 export default function HomepageGroup(props) {
   const { defaultHomepage = 1 } = props;
-  const { currentScreenLayer, register } = useContext(ScreenLayerManagerContext) as ScreenLayerContextState
+  const { currentScreenLayer, register, showLayer } = useContext(ScreenLayerManagerContext) as ScreenLayerContextState
   const show = createMemo(() => currentScreenLayer().type === ScreenLayerTypes.homepage);
   const [currentHomepage, setCurrentHomepage] = createSignal(defaultHomepage);
   const [capacity, setCapacity] = createSignal(0);
@@ -66,24 +66,53 @@ export default function HomepageGroup(props) {
       setCurrentHomepage(state => state - 1);
     } else if (key === ArrowKeys.Right && currentHomepage() < (calculatedHomepages().length - 1)) {
       setCurrentHomepage(state => state + 1);
+    } else if (key === ArrowKeys.Down) {
+      showLayer({
+        type: ScreenLayerTypes.searchPopover
+      })
     }
   }
   let touchStartCoordinates: Coordinates = {
     x: 0,
     y: 0
   }
-  function handleTouchStart(event: TouchEvent) {
+  let touchStartTime: Date;
+  function handleTouchStart(event: TouchEvent | MouseEvent) {
     if (!show()) return;
-    touchStartCoordinates = {
-      x: event.changedTouches[0].screenX,
-      y: event.changedTouches[0].screenY,
+    touchStartTime = new Date();
+    // handle both touch and click events
+    if ((event as TouchEvent).changedTouches) {
+      touchStartCoordinates = {
+        x: (event as TouchEvent).changedTouches[0].screenX,
+        y: (event as TouchEvent).changedTouches[0].screenY,
+      }
+    } else {
+      touchStartCoordinates = {
+        x: (event as MouseEvent).screenX,
+        y: (event as MouseEvent).screenY,
+      }
     }
   }
-  function handleTouchEnd(event: TouchEvent) {
+  function handleTouchEnd(event: TouchEvent | MouseEvent) {
     if (!show()) return;
-    let touchEndCoordinates: Coordinates = {
-      x: event.changedTouches[0].screenX,
-      y: event.changedTouches[0].screenY,
+    let touchEndTime = new Date();
+    // if the event finishes longer than .5s, treat it as "hold" event.
+    if (((touchEndTime as any) - (touchStartTime as any)) > 500) {
+      return;
+    }
+    touchStartTime = null;
+    // handle both touch and click events
+    let touchEndCoordinates = { x: -1, y: -1 }
+    if ((event as TouchEvent).changedTouches) {
+      touchEndCoordinates = {
+        x: (event as TouchEvent).changedTouches[0].screenX,
+        y: (event as TouchEvent).changedTouches[0].screenY,
+      }
+    } else {
+      touchEndCoordinates = {
+        x: (event as MouseEvent).screenX,
+        y: (event as MouseEvent).screenY,
+      }
     }
     const direction = getTouchSwipeDirection(touchStartCoordinates, touchEndCoordinates);
     if (!direction) return;
@@ -91,7 +120,10 @@ export default function HomepageGroup(props) {
       setCurrentHomepage(state => state - 1);
     } else if (direction === TouchSwipeDirections.left && currentHomepage() < (calculatedHomepages().length - 1)) {
       setCurrentHomepage(state => state + 1);
-    } else return;
+    } else if (direction === TouchSwipeDirections.down) {
+      // show searchPopover page
+      showLayer({ type: ScreenLayerTypes.searchPopover });
+    }
   }
   function handleResize() {
     const newCapacity = calculateScreenCapacity(getElementSize(document.getElementById("app")));
@@ -100,7 +132,6 @@ export default function HomepageGroup(props) {
       setCurrentHomepage(defaultHomepage)
     }
   }
-
   let ref;
   onMount(() => {
     register({
@@ -108,13 +139,11 @@ export default function HomepageGroup(props) {
       ref
     });
     const ele: HTMLElement = document.querySelector(".homepage-group");
-    window.removeEventListener("keydown", handleKeyPress)
-    ele.removeEventListener("touchstart", handleTouchStart);
-    ele.removeEventListener("touchend", handleTouchEnd);
-    window.removeEventListener("resize", handleResize);
     window.addEventListener("keydown", handleKeyPress);
     ele.addEventListener("touchstart", handleTouchStart);
     ele.addEventListener("touchend", handleTouchEnd);
+    ele.addEventListener("mousedown", handleTouchStart);
+    ele.addEventListener("mouseup", handleTouchEnd);
     window.addEventListener("resize", handleResize);
     setCapacity(calculateScreenCapacity(getElementSize(document.getElementById("app"))))
   });
@@ -124,6 +153,8 @@ export default function HomepageGroup(props) {
       window.removeEventListener("keydown", handleKeyPress)
       ele.removeEventListener("touchstart", handleTouchStart);
       ele.removeEventListener("touchend", handleTouchEnd);
+      ele.removeEventListener("mousedown", handleTouchStart);
+      ele.removeEventListener("mouseup", handleTouchEnd);
       window.removeEventListener("resize", handleResize);
     } catch (e) {
       console.error(e);

@@ -19,6 +19,18 @@ export function Input(props) {
   )
 }
 
+export function SearchBar(props) {
+  const { type = "text", onChange, onInput, style = {}, className = "", ref } = props;
+  const inputProps = { type, onChange, onInput, ref };
+  const value = createMemo(() => props.value || "")
+  return (
+    <div class={`mbm-search-bar ${className}`} style={style}>
+      <label><i class="material-icons left">search</i></label>
+      <input {...inputProps} value={value()} />
+    </div>
+  );
+}
+
 
 export function Chips(props) {
   const {

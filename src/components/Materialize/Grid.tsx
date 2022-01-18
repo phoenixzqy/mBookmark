@@ -2,13 +2,15 @@ import { createMemo } from "solid-js";
 
 const colClasses = {};
 for (let i = 1; i <= 12; i++) {
-  colClasses[`s${i}`] = `s${i}`;
-  colClasses[`offset-s${i}`] = `offset-s${i}`;
+  for (let s of ["s", "m", "l", "xl"]) {
+    colClasses[`${s}${i}`] = `${s}${i}`;
+    colClasses[`offset-${s}${i}`] = `offset-${s}${i}`;
+  }
 }
 
 export function Row(props) {
-  const { className = "", style = {} } = props;
-  return <div class={`row ${className}`} style={style}>
+  const { className = "", style = {}, onClick } = props;
+  return <div class={`row ${className}`} style={style} onClick={onClick}>
     {props.children}
   </div>
 }

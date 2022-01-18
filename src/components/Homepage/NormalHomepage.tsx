@@ -2,7 +2,7 @@ import { AddEntryButton, Entry, MiniEntryGroup } from '../Entry';
 import { AppContext, AppContextState } from '../App/AppContext';
 import type { BaseEntryConfig, BookmarkEntryConfig, MiniEntryGroupConfig } from '../Entry';
 import { EntryTypes, MiniEntryGroupType } from '../../utils/constants';
-import { For, Show, createMemo, onCleanup, onMount, useContext } from 'solid-js';
+import { For, Show, createMemo, onMount, useContext } from 'solid-js';
 
 import { BaseHomepageConfig } from './Homepage';
 import { DragHoldArea } from '../Materialize/DragHoldArea';
@@ -47,10 +47,6 @@ export default function NormalHomepage(props) {
       }
     });
   });
-  onCleanup(() => {
-    Draggable.clearDragMove(ref);
-    Draggable.clearDragEnd(ref);
-  })
   return (
     <div class="homepage-app-container" ref={ref}>
       <DragHoldArea
@@ -89,7 +85,6 @@ export default function NormalHomepage(props) {
           right: "0"
         }}
         callback={(e) => {
-          console.log(pageNumber, pageCount)
           // the first normal page can't navigate to the left
           if (pageNumber === pageCount - 2) return;
           setCurrentHomepage(state => state + 1);
