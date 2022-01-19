@@ -11,7 +11,7 @@ export enum EntryTypes {
   app = "app"
 }
 export enum HomepageTypes {
-  feedly = "feedly",
+  feed = "feed",
   normal = "normal",
   widgets = "widgets"
 }

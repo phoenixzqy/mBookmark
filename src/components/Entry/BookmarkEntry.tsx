@@ -1,4 +1,4 @@
-import { AppContext, AppContextState } from '../App';
+import { AppContext, AppContextState } from '../mBookmark';
 import { EntryTypes, ScreenLayerTypes } from '../../utils/constants';
 import { createMemo, onCleanup, onMount, useContext } from 'solid-js';
 

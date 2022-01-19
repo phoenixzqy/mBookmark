@@ -1,5 +1,5 @@
 body {
-  --wall-paper: url("./assets/default_wall_paper.jpg");
+  --wallpaper: url("./assets/default_wallpaper.jpg");
   --app-icon: url(./assets/dragon_icon_128x128.png);
   --app-background-color: rgba(255, 255, 255, .7);
   --font-color: #fff;
@@ -365,8 +365,8 @@ body {
   text-shadow: rgb(0 0 0) 1px 1px 1px, rgb(0 0 0) 1px 1px 1px;
 }
 .search-popover-back-btn {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 100%;
   background-color: rgb(255 255 255 / 24%);
   color: var(--font-color);
@@ -374,8 +374,8 @@ body {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 15px;
+  left: 15px;
   cursor: pointer;
   z-index: 1;
 }
@@ -452,7 +452,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 335px) {
   .homepage-app-container {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -494,22 +494,50 @@ body {
   }
 }
 .homepage-background {
-  display: block;
+  display: flex;
   width: 100%;
   height: 100%;
   position: absolute;
   overflow: hidden;
-  background-image: var(--wall-paper);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover; 
-  transition-duration: var(--animation-duration);
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+}
+#background-video {
+  height: 100%;
+
 }
 .background-show {
   filter: none;
 }
 .background-hide {
   filter: blur(25px);
+}
+.feed-homepage-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+.feed-homepage-ifram-container {
+  display: block;
+  height: calc(100% - 30px);
+  width: calc(100% - 30px);
+  overflow: hidden;
+  position: relative;
+}
+.feed-homepage-iframe {
+  display: block;
+  height: 100%;
+  width: calc(100% + 25px);
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .homepage-group {
   display: block;

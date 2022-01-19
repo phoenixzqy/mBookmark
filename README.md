@@ -18,6 +18,7 @@ mBookmark is short for mobile-like bookmark
 - [x] fix dropdown menu
 - [x] edit group-popover/group title
 - [x] searchPopover
+- [x] Live wallpaper
 - [ ] App screenLayer
 - [ ] APPs
   - [ ] * Readme/intro doc
@@ -34,7 +35,6 @@ mBookmark is short for mobile-like bookmark
 - [ ] gist based DB
 - [ ] localstorage based DB
 - [ ] RSS feed
-- [ ] Live wallpaper
 - [ ] widgets
   - [ ] * search bar
   - [ ] * world clock

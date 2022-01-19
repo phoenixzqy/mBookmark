@@ -1,5 +1,5 @@
 import { AddBookmarkPopover, EditBookmarkPopover, GroupPopover } from ".";
-import { AppContext, AppContextState } from "../App";
+import { AppContext, AppContextState } from "../mBookmark";
 import { PopoverTypes, ScreenLayerTypes } from "../../utils/constants";
 import { createMemo, onMount, useContext } from "solid-js";
 

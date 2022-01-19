@@ -6,7 +6,7 @@
       "themeColor": "#fff"
     },
     "widgets": {
-      "feedly": {
+      "feed": {
         "theme": ""
       },
       "search": {
@@ -32,7 +32,7 @@
   },
   "homepages": [
     {
-      "type": "feedly"
+      "type": "feed"
     },
     {
       "type": "normal",
@@ -45,9 +45,9 @@
             {
               "id": "ae85a034-e663-47df-8144-69dd6e65ab01",
               "type": "bookmark",
-              "url": "https://feedly.com",
-              "icon": "https://feedly.com/favicon.ico",
-              "name": "Feedly",
+              "url": "https://feed.com",
+              "icon": "https://feed.com/favicon.ico",
+              "name": "Feed",
               "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
               "keywords": [
                 "RSS",
@@ -69,9 +69,9 @@
             {
               "id": "ae85a034-e663-47df-8144-69dd6e65ab03",
               "type": "bookmark",
-              "url": "https://feedly.com",
-              "icon": "https://feedly.com/favicon.ico",
-              "name": "Feedly",
+              "url": "https://feed.com",
+              "icon": "https://feed.com/favicon.ico",
+              "name": "Feed",
               "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
               "keywords": [
                 "RSS",
@@ -93,9 +93,9 @@
             {
               "id": "ae85a034-e663-47df-8144-69dd6e65ab05",
               "type": "bookmark",
-              "url": "https://feedly.com",
-              "icon": "https://feedly.com/favicon.ico",
-              "name": "Feedly",
+              "url": "https://feed.com",
+              "icon": "https://feed.com/favicon.ico",
+              "name": "Feed",
               "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
               "keywords": [
                 "RSS",
@@ -117,9 +117,9 @@
             {
               "id": "ae85a034-e663-47df-8144-69dd6e65ab07",
               "type": "bookmark",
-              "url": "https://feedly.com",
-              "icon": "https://feedly.com/favicon.ico",
-              "name": "Feedly",
+              "url": "https://feed.com",
+              "icon": "https://feed.com/favicon.ico",
+              "name": "Feed",
               "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
               "keywords": [
                 "RSS",
@@ -141,9 +141,9 @@
             {
               "id": "ae85a034-e663-47df-8144-69dd6e65ab09",
               "type": "bookmark",
-              "url": "https://feedly.com",
-              "icon": "https://feedly.com/favicon.ico",
-              "name": "Feedly",
+              "url": "https://feed.com",
+              "icon": "https://feed.com/favicon.ico",
+              "name": "Feed",
               "description": "Keep up with the topics and trends you care about, without the overwhelm. Make your research workflow efficient and enjoyable. Experience the power of RSS.",
               "keywords": [
                 "RSS",

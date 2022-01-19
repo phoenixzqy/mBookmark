@@ -1,5 +1,5 @@
 import { AddEntryButton, Entry, MiniEntryGroup } from '../Entry';
-import { AppContext, AppContextState } from '../App/AppContext';
+import { AppContext, AppContextState } from '../mBookmark';
 import type { BaseEntryConfig, BookmarkEntryConfig, MiniEntryGroupConfig } from '../Entry';
 import { EntryTypes, MiniEntryGroupType } from '../../utils/constants';
 import { For, Show, createMemo, onMount, useContext } from 'solid-js';

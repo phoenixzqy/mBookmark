@@ -1,8 +1,8 @@
 import { Button, Col, Input } from '../Materialize';
 import { createEffect, createMemo, createSignal, useContext } from 'solid-js';
 
-import { AppContext } from '../App';
-import type { AppContextState } from '../App';
+import { AppContext } from '../mBookmark';
+import type { AppContextState } from '../mBookmark';
 import { BookmarkEntryConfig } from '../Entry';
 import { Chips } from '../Materialize/Input';
 import { EntryTypes } from '../../utils/constants';
@@ -71,7 +71,7 @@ export default function EditBookmarkPopover() {
   }
   return (
     <div class="popover-container add-entry-popover-container">
-      <PopoverTitle name="Edit Bookmark/App" />
+      <PopoverTitle name="Edit Bookmark" />
       <Row>
         <Col s12>
           <Row>

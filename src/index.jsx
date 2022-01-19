@@ -1,5 +1,6 @@
-import { render } from "solid-js/web";
-import { App } from './components/App';
 import './index.css';
 
-render(App, document.getElementById('app'));
+import { mBookmark } from './components/mBookmark';
+import { render } from "solid-js/web";
+
+render(mBookmark, document.getElementById('app'));

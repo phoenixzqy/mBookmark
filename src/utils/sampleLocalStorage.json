@@ -1,13 +1,12 @@
 {
-  "siteConfig": {
-  },
+  "siteConfig": {},
   "user": {
     "token": "",
     "gistId": ""
   },
   "widgets": {
-    "feedly": {
-      "token" : ""
+    "feed": {
+      "token": ""
     }
   }
 }

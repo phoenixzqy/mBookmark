@@ -1,4 +1,4 @@
-import { AppContext, AppContextState } from '../App/AppContext';
+import { AppContext, AppContextState } from '../mBookmark/AppContext';
 import { BaseEntryConfig, BookmarkEntryConfig, MiniEntryGroupConfig } from '../Entry';
 import { Col, Row, SearchBar } from '../Materialize';
 import { For, createEffect, createMemo, createSignal, useContext } from 'solid-js';
@@ -54,13 +54,17 @@ export default function SearchPopover(props) {
         </Col>
       </Row>
     </div>
-    <div class="search-popover-search-result-container">
+    <div class="search-popover-search-result-container" onClick={e => backToPrevLayer()}>
       <Row>
         <Col s10 m9 l8 xl7>
           <For each={searchResult()} children={<></>}>
             {(item) => (
               <Row className="search-result-item"
-                onClick={(e) => window.open(item.url)}
+                onClick={(e: Event) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  window.open(item.url)
+                }}
               >
                 <div style={{ display: "flex", height: "55px", overflow: "hidden" }}>
                   <div

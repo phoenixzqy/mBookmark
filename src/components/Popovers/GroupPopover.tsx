@@ -3,8 +3,8 @@ import { ArrowKeys, MiniEntryGroupType, ScreenLayerTypes, entrySize } from '../.
 import { Coordinates, TouchSwipeDirections, elementSize, getElementSize, getTouchSwipeDirection } from '../../utils/helpers';
 import { For, Show, createMemo, createSignal, onCleanup, onMount, useContext } from 'solid-js';
 
-import { AppContext } from '../App';
-import type { AppContextState } from '../App'
+import { AppContext } from '../mBookmark';
+import type { AppContextState } from '../mBookmark'
 import { DragHoldArea } from "../Materialize/DragHoldArea";
 import { Draggable } from "../../utils/draggable";
 import { NormalHomepageConfig } from "../Homepage";
