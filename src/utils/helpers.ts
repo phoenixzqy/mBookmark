@@ -13,6 +13,7 @@ export function getTouchSwipeDirection(startCoordinates: Coordinates, endCoordin
   if (endCoordinates.x - startCoordinates.x === 0 && endCoordinates.y - startCoordinates.y === 0) return false;
   const xDiff = endCoordinates.x - startCoordinates.x;
   const yDiff = endCoordinates.y - startCoordinates.y;
+  if (Math.abs(xDiff) < 50 && Math.abs(yDiff) < 50) return false;
   if (Math.abs(xDiff) > Math.abs(yDiff)) {
     // horizontal swipe
     if (xDiff > 0) return TouchSwipeDirections.right;

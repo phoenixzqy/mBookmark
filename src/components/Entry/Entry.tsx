@@ -1,3 +1,4 @@
+import ApplicationEntry from './ApplicationEntry';
 import BookmarkEntry from './BookmarkEntry';
 import { EntryTypes } from '../../utils/constants';
 import { createMemo } from 'solid-js';
@@ -13,6 +14,8 @@ export default function Entry(props) {
   const myProps = { style };
   function getEntryTemplate(type: EntryTypes) {
     switch (type) {
+      case EntryTypes.application:
+        return <ApplicationEntry config={config()} {...myProps} />
       case EntryTypes.bookemark:
         return <BookmarkEntry config={config()} {...myProps} />
       default:

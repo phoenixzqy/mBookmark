@@ -19,22 +19,24 @@ mBookmark is short for mobile-like bookmark
 - [x] edit group-popover/group title
 - [x] searchPopover
 - [x] Live wallpaper
+- [x] reading page
+- [x] bottom Dock
+  - [x] * fullscreen (icon only)
+  - [x] * Readme/intro doc (icon only)
+  - [x] * barcode scanner (icon only)
+  - [x] * setting (icon only)
+- [x] App entry, Application structure
 - [ ] App screenLayer
 - [ ] APPs
+  - [x] * fullscreen
   - [ ] * Readme/intro doc
   - [ ] * barcode scanner
   - [ ] * settings
-- [ ] bottom Dock
-  - [ ] * fullscreen
-  - [ ] * Readme/intro doc
-  - [ ] * barcode scanner
-  - [ ] * setting
 - [ ] input validations
 - [ ] fix background blur border css issue
 - [ ] login page
 - [ ] gist based DB
 - [ ] localstorage based DB
-- [ ] RSS feed
 - [ ] widgets
   - [ ] * search bar
   - [ ] * world clock

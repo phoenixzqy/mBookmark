@@ -1,8 +1,9 @@
 import { ArrowKeys, HomepageTypes, entrySize } from "../../utils/constants";
 import { Coordinates, TouchSwipeDirections, elementSize, getElementSize, getTouchSwipeDirection } from '../../utils/helpers';
-import { For, createMemo, createSignal, onCleanup, onMount, useContext } from "solid-js";
+import { For, Show, createMemo, createSignal, onCleanup, onMount, useContext } from "solid-js";
 
 import type { BaseHomepageConfig } from './Homepage';
+import { Dock } from "../Dock";
 import Homepage from './Homepage';
 import { NormalHomepageConfig } from '.';
 import type { ScreenLayerContextState } from "../ScreenLayerManager";
@@ -50,7 +51,9 @@ export default function HomepageGroup(props) {
       left: `${(index() - currentHomepage()) * 100}%`
     }
   }
-
+  function backToHomepage() {
+    setCurrentHomepage(defaultHomepage);
+  }
   function getTabClass(index): string {
     let className = "homepage-group-tab";
     if (index() === currentHomepage()) {
@@ -162,16 +165,19 @@ export default function HomepageGroup(props) {
   });
   return (
     <div ref={ref} class="homepage-group">
-      <div class="homepage-group-tabs" style={{ display: show() ? "inline-block" : "none" }}>
-        <For each={calculatedHomepages()} children={<></>}>
-          {(item, index) => <span class={getTabClass(index)}></span>}
-        </For>
-      </div>
       <For each={calculatedHomepages()} children={<></>}>
         {(item, index) => <div class="homepage-group-item" style={calculatePosition(index)}>
-          <Homepage config={item} capacity={capacity()} pageNumber={index()} pageCount={calculatedHomepages().length} setCurrentHomepage={setCurrentHomepage} />
+          <Homepage config={item} capacity={capacity()} pageNumber={index()} pageCount={calculatedHomepages().length} setCurrentHomepage={setCurrentHomepage} backToHomepage={backToHomepage} />
         </div>}
       </For>
+      <Show when={currentHomepage() > 0} children={<></>}>
+        <div class="homepage-group-tabs" style={{ display: show() ? "inline-block" : "none" }}>
+          <For each={calculatedHomepages()} children={<></>}>
+            {(item, index) => <span class={getTabClass(index)}></span>}
+          </For>
+        </div>
+        <Dock></Dock>
+      </Show>
     </div>
   );
 }

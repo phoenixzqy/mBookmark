@@ -8,7 +8,7 @@ export const EscapeKey = "Escape";
 export const EnterKey = "Enter";
 export enum EntryTypes {
   bookemark = "bookmark",
-  app = "app"
+  application = "application"
 }
 export enum HomepageTypes {
   feed = "feed",
