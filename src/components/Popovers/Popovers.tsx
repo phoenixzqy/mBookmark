@@ -3,6 +3,7 @@ import { AppContext, AppContextState } from "../mBookmark";
 import { PopoverTypes, ScreenLayerTypes } from "../../utils/constants";
 import { createMemo, onMount, useContext } from "solid-js";
 
+import ApplicationPopover from "./ApplicationPopover";
 import { Draggable } from "../../utils/draggable";
 import type { ScreenLayerContextState } from '../ScreenLayerManager'
 import { ScreenLayerManagerContext } from "../ScreenLayerManager";
@@ -27,6 +28,8 @@ export default function (props) {
         return <EditBookmarkPopover />;
       case PopoverTypes.search:
         return <SearchPopover />
+      case PopoverTypes.application:
+        return <ApplicationPopover />
       default:
         return null;
     }
@@ -35,7 +38,8 @@ export default function (props) {
     [PopoverTypes.group]: ScreenLayerTypes.groupPopover,
     [PopoverTypes.addEntry]: ScreenLayerTypes.addBookmarkPopover,
     [PopoverTypes.editEntry]: ScreenLayerTypes.editBookmarkPopover,
-    [PopoverTypes.search]: ScreenLayerTypes.searchPopover
+    [PopoverTypes.search]: ScreenLayerTypes.searchPopover,
+    [PopoverTypes.application]: ScreenLayerTypes.applicationPopover
   }
   let ref;
   onMount(() => {

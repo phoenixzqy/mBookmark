@@ -15,14 +15,14 @@ export default function ApplicationEntry(props) {
     if (!config.id) return undefined;
     return ApplicationMapper[config.id];
   });
-  const Icon = app()?.icon;
+  const IconComponent = app()?.icon;
   return (
     <div class="entry-wrapper" {...myProps} entry-type={EntryTypes.application}>
       <div class="entry-container"
         style={{ "background-image": "none" }}
         title={`${app()?.name}: ${app()?.description || ""}`}
       >
-        <Icon></Icon>
+        <IconComponent></IconComponent>
       </div>
       <EntryTitle name={app()?.name} />
     </div>

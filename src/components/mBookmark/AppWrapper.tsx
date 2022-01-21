@@ -25,6 +25,7 @@ export default function AppWrapper() {
       <Popovers config={{ type: PopoverTypes.addEntry }} />
       <Popovers config={{ type: PopoverTypes.editEntry }} />
       <Popovers config={{ type: PopoverTypes.search }} />
+      <Popovers config={{ type: PopoverTypes.application }} />
     </Show>
   </>
 }

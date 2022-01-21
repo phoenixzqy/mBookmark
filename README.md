@@ -26,14 +26,14 @@ mBookmark is short for mobile-like bookmark
   - [x] * barcode scanner (icon only)
   - [x] * setting (icon only)
 - [x] App entry, Application structure
-- [ ] App screenLayer
+- [x] App screenLayer
+- [x] App manager
 - [ ] APPs
   - [x] * fullscreen
   - [ ] * Readme/intro doc
   - [ ] * barcode scanner
   - [ ] * settings
 - [ ] input validations
-- [ ] fix background blur border css issue
 - [ ] login page
 - [ ] gist based DB
 - [ ] localstorage based DB
@@ -42,7 +42,8 @@ mBookmark is short for mobile-like bookmark
   - [ ] * world clock
   - [ ] * weather
   - [ ] * Douban music
-
+  - [ ] * stock quote ticker
+- [ ] coachmark
 - [ ] make it into browser extension
   - [ ] * add bookmark based on user current viewing website.
 - [ ] touch events support

@@ -2,6 +2,7 @@ import type { BaseHomepageConfig, FeedHomepageConfig, NormalHomepageConfig, Widg
 
 import { AppProvider } from ".";
 import AppWrapper from './AppWrapper';
+import { ApplicationManagerProvider } from '../ApplicationManager/ApplicationManager';
 import { ScreenLayerManagerProvider } from '../ScreenLayerManager';
 
 interface appConfig {
@@ -14,7 +15,9 @@ export function mBookmark() {
     <div class="app">
       <AppProvider>
         <ScreenLayerManagerProvider>
-          <AppWrapper></AppWrapper>
+          <ApplicationManagerProvider>
+            <AppWrapper></AppWrapper>
+          </ApplicationManagerProvider>
         </ScreenLayerManagerProvider>
       </AppProvider>
     </div>

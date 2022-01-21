@@ -20,7 +20,8 @@ export enum PopoverTypes {
   group,
   addEntry,
   editEntry,
-  search
+  search,
+  application
 }
 export enum ScreenLayerTypes {
   homepage = "homepage",
@@ -28,6 +29,7 @@ export enum ScreenLayerTypes {
   addBookmarkPopover = "addBookmarkPopover",
   editBookmarkPopover = "editBookmarkPopover",
   searchPopover = "searchPopover",
+  applicationPopover = "applicationPopover"
 }
 export const entrySize = {
   x: 90,

@@ -1,10 +1,13 @@
+import { Icon, appid } from "./Icon";
+
 import { ApplicationConfig } from '../interfaces';
-import { Icon } from "./Icon";
+import { SettingsApp } from './Application';
 
 export const SettingsApplication: ApplicationConfig = {
-  id: "settings",
+  id: appid,
   name: "Settings",
   description: "mBookmark Settings",
   icon: Icon,
+  application: SettingsApp
 }
 

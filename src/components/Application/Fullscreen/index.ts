@@ -1,8 +1,9 @@
+import { Icon, appid } from "./Icon";
+
 import { ApplicationConfig } from '../interfaces';
-import { Icon } from "./Icon";
 
 export const FullscreenApplication: ApplicationConfig = {
-  id: "fullscreen",
+  id: appid,
   name: "Fullscreen",
   description: "Enter fullscreen mode",
   icon: Icon,

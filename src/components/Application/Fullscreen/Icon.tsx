@@ -1,5 +1,7 @@
 import { createSignal, onMount } from 'solid-js';
 
+export const appid = "fullscreen";
+
 export function Icon(props) {
   const [fullscreen, setFullscreen] = createSignal(false);
   onMount(() => {

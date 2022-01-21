@@ -1,10 +1,13 @@
+import { Icon, appid } from "./Icon";
+
 import { ApplicationConfig } from '../interfaces';
-import { Icon } from "./Icon";
+import { ReadMeApp } from './Application';
 
 export const ReadmeApplication: ApplicationConfig = {
-  id: "readme",
+  id: appid,
   name: "ReadMe",
   description: "mBookmark user instructions",
   icon: Icon,
+  application: ReadMeApp
 }
 
