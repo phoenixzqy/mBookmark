@@ -10,13 +10,18 @@ interface BaseHomepageConfig {
 
 export default function Homepage(props) {
   const [config] = createSignal(props.config as BaseHomepageConfig);
-  const HomepageTemplateMapper = {
-    [HomepageTypes.feed]: <FeedHomepage config={config()} {...props} />,
-    [HomepageTypes.normal]: <NormalHomepage config={config()} {...props} />,
-    [HomepageTypes.widgets]: <WidgetsHomepage config={config()} {...props} />
+  function getHomepageElement(type: HomepageTypes) {
+    switch (type) {
+      case HomepageTypes.feed:
+        return <FeedHomepage config={config()} {...props} />;
+      case HomepageTypes.normal:
+        return <NormalHomepage config={config()} {...props} />;
+      case HomepageTypes.widgets:
+        return <WidgetsHomepage config={config()} {...props} />
+    }
   }
   return <div class="homepage">
-    {HomepageTemplateMapper[config().type]}
+    {getHomepageElement(config().type)}
   </div>
 }
 

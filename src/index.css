@@ -265,6 +265,9 @@ body {
   border: none !important;
   box-shadow: none !important;
 }
+.popover-title:disabled {
+  color: #fff !important;
+}
 .add-entry-popover-container {
   background-color: #ffffffe6;
   display: flex;
@@ -696,10 +699,23 @@ body {
   height: 65px;
   width: 65px;
 }
-.barcode-app-icon {
+.settings-app-wrapper {
+  height: 100%;
+  width: 335px;
+  box-shadow: 0px 1px 5px 0px rgb(0 0 0 / 15%);
+  padding: 15px;
+}
+.pokeclicker-app-icon {
+  background-color: transparent;
+}
+.pokeclicker-app-icon img {
+  height: 45px;
+  width: 45px;
+}
+.qrcode-app-icon {
   display: flex;
 }
-.barcode-app-icon img {
+.qrcode-app-icon img {
   height: 45px;
   width: 45px;
 }
@@ -744,6 +760,7 @@ body {
   bottom: 0;
   left: 0;
   background-color: #383838;
+  z-index: 1;
 }
 .adroid-bottom-op-bar div {
   display: inline-flex;
@@ -756,4 +773,34 @@ body {
 }
 .adroid-bottom-op-bar div:hover {
   background-color: #000;
+}
+.green {
+  background-color: #299e1e;
+}
+.red {
+  background-color: rgb(192, 0, 0);
+}
+.login-container {
+  z-index: 1;
+  width: 335px;
+  height: 245px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 1px -1px 10px 1px rgba(0,0,0,0.25);
+  padding: 15px;
+}
+.login-container .title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #26a69a;
+}
+.global-loader-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255 255 255 / 30%);
+  z-index: 99999999;
 }

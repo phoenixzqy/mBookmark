@@ -13,8 +13,10 @@ export default function ApplicationPopover(props) {
     if (Application) return <Application></Application>
     else return undefined;
   }
-  return <div class="application-container">
-    {getApplicationElement()}
+  return <>
+    <div class="application-container">
+      {getApplicationElement()}
+    </div>
     <div class="adroid-bottom-op-bar">
       <div onClick={() => backToPrevLayer()}>
         <i class="material-icons">keyboard_arrow_left</i>
@@ -26,5 +28,5 @@ export default function ApplicationPopover(props) {
         <i class="material-icons">tab</i>
       </div>
     </div>
-  </div>
+  </>
 }

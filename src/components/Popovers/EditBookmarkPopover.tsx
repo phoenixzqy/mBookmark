@@ -71,7 +71,7 @@ export default function EditBookmarkPopover() {
   }
   return (
     <div class="popover-container add-entry-popover-container">
-      <PopoverTitle name="Edit Bookmark" />
+      <PopoverTitle name="Edit Bookmark" disabled={true} />
       <Row>
         <Col s12>
           <Row>

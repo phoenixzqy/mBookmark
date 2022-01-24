@@ -28,21 +28,15 @@ mBookmark is short for mobile-like bookmark
 - [x] App entry, Application structure
 - [x] App screenLayer
 - [x] App manager
-- [ ] APPs
+- [-] APPs
   - [x] * fullscreen
   - [ ] * Readme/intro doc
   - [ ] * barcode scanner
-  - [ ] * settings
+  - [x] * settings
 - [ ] input validations
 - [ ] login page
-- [ ] gist based DB
-- [ ] localstorage based DB
-- [ ] widgets
-  - [ ] * search bar
-  - [ ] * world clock
-  - [ ] * weather
-  - [ ] * Douban music
-  - [ ] * stock quote ticker
+- [x] gist based DB
+- [x] localstorage based DB
 - [ ] coachmark
 - [ ] make it into browser extension
   - [ ] * add bookmark based on user current viewing website.

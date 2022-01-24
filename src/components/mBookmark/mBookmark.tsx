@@ -3,10 +3,12 @@ import type { BaseHomepageConfig, FeedHomepageConfig, NormalHomepageConfig, Widg
 import { AppProvider } from ".";
 import AppWrapper from './AppWrapper';
 import { ApplicationManagerProvider } from '../ApplicationManager/ApplicationManager';
+import { Loading } from '../Materialize';
 import { ScreenLayerManagerProvider } from '../ScreenLayerManager';
+import { SiteConfig } from './AppContext';
 
-interface appConfig {
-  siteConfig: any,
+export interface appConfig {
+  siteConfig: SiteConfig,
   homepages: (BaseHomepageConfig | FeedHomepageConfig | NormalHomepageConfig | WidgetsHomepageConfig)[]
 }
 
@@ -20,8 +22,7 @@ export function mBookmark() {
           </ApplicationManagerProvider>
         </ScreenLayerManagerProvider>
       </AppProvider>
+      <Loading />
     </div>
   );
 }
-
-export type { appConfig };

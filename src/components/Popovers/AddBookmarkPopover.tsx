@@ -32,10 +32,10 @@ export default function AddBookmarkPopover() {
   const [data, setData] = createSignal({
     id: "",
     type: EntryTypes.bookemark,
-    url: "https://www.solidjs.com/",
-    icon: "https://www.solidjs.com/assets/logo.123b04bc.svg",
-    name: "SolidJS",
-    description: "A declarative, efficient and flexible JavaScript library for building user interfaces.",
+    url: "",
+    icon: "",
+    name: "",
+    description: "",
     keywords: []
   } as BookmarkEntryConfig);
   const updateData = (name: string) => (e: any) => {
@@ -61,7 +61,7 @@ export default function AddBookmarkPopover() {
   }
   return (
     <div class="popover-container add-entry-popover-container">
-      <PopoverTitle name="Add Bookmark" />
+      <PopoverTitle name="Add Bookmark" disabled={true} />
       <Row>
         <Col s12>
           <Row>

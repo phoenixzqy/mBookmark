@@ -1,5 +1,6 @@
-import { Show, createEffect, createMemo, createSignal, onCleanup, onMount } from 'solid-js';
+import { For, Show, createEffect, createMemo, createSignal, onCleanup, onMount } from 'solid-js';
 
+import { EnterKey } from '../../utils/constants';
 import { generateElementId } from '../../utils/helpers';
 import materialize from '../../utils/materialize';
 
@@ -13,7 +14,7 @@ export function Input(props) {
     <div class={`input-field ${className}`} style={style}>
       <input id={id} class="validate" {...inputProps} value={value()} />
       <Show when={props.label} children={<></>}>
-        <label for={id}>{props.label}</label>
+        <label for={id} classList={{ active: value() }}>{props.label}</label>
       </Show>
     </div>
   )
@@ -101,4 +102,49 @@ export function Chips(props) {
     </div>
 
   );
+}
+
+export interface SelectOpion {
+  value: string;
+  disabled?: boolean;
+  selected?: boolean;
+  display: string
+}
+export function Select(props) {
+  let ref;
+  const { label = "", options = [] as SelectOpion[], onSelected } = props;
+  const [instance, setInstance] = createSignal(undefined as any);
+  let id = generateElementId();
+  onMount(() => {
+    const ele = document.getElementById(id);
+    const instance = materialize.FormSelect.init(ele);
+    setInstance(instance);
+    let list: HTMLElement[] = Array.from(ref.querySelectorAll(".select-dropdown li")) || [];
+    const baseId = ref.querySelector("ul").id;
+    list.forEach(item => item.addEventListener("click", (e: MouseEvent) => {
+      const index = (e.target as HTMLElement)?.parentElement?.id.replace(baseId, "");
+      console.log(index)
+      if (index !== undefined && typeof onSelected === "function") {
+        onSelected(options[index].value);
+      }
+    }));
+    list.forEach(item => item.addEventListener("keyup", (e: KeyboardEvent) => {
+      if (e.key !== EnterKey) return;
+      const index = (e.target as HTMLElement)?.parentElement?.id.replace(baseId, "");
+      if (index !== undefined && typeof onSelected === "function") {
+        onSelected(options[index].value);
+      }
+    }));
+  });
+  onCleanup(() => {
+    instance().destroy();
+  });
+  return <div ref={ref} class="input-field">
+    <select id={id}>
+      <For each={options} children={<></>}>
+        {(item: SelectOpion) => <option value={item.value} disabled={item.disabled ? true : false} selected={item.selected ? true : false}>{item.display}</option>}
+      </For>
+    </select>
+    <label>{label}</label>
+  </div>
 }

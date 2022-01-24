@@ -67,7 +67,7 @@ export default function NormalHomepage(props) {
       <For each={config().items} children={<></>}>
         {(item) => {
           if (item.type === MiniEntryGroupType) return <MiniEntryGroup config={item} />;
-          if (Object.values(EntryTypes).includes(item.type)) return <Entry config={item} />;
+          if (Object.values(EntryTypes).includes(item.type)) return <Entry config={item} isDraggable={true} />;
           return null;
         }}
       </For>

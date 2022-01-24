@@ -39,3 +39,8 @@ export const entryIconSize = {
   x: 55,
   y: 55
 }
+
+export enum wallpaperTypes {
+  video = "video",
+  image = "image"
+}

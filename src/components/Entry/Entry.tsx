@@ -10,8 +10,8 @@ interface BaseEntryConfig {
 
 export default function Entry(props) {
   const config = createMemo(() => props.config as BaseEntryConfig);
-  const { style = {} } = props;
-  const myProps = { style };
+  const { style = {}, isDraggable = false } = props;
+  const myProps = { style, isDraggable };
   function getEntryTemplate(type: EntryTypes) {
     switch (type) {
       case EntryTypes.application:

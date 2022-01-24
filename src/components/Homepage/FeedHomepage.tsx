@@ -1,11 +1,13 @@
+import { AppContext, AppContextState } from '../mBookmark/AppContext';
+
 import { BaseHomepageConfig } from './Homepage';
-import { createSignal } from 'solid-js';
+import { useContext } from 'solid-js';
 
 interface FeedHomepageConfig extends BaseHomepageConfig {
 }
 
 export default function FeedHomepage(props) {
-  const [config, setConfig] = createSignal(props.config as FeedHomepageConfig);
+  const { getUserSiteConfig } = useContext(AppContext) as AppContextState;
   const { backToHomepage } = props;
   return (
     <div class="homepage-app-container">
@@ -15,7 +17,7 @@ export default function FeedHomepage(props) {
       {/** NOTE: use iframe for now */}
       <div class="feed-homepage-container">
         <div class="feed-homepage-ifram-container">
-          <iframe class="feed-homepage-iframe" src="https://juejin.cn/" title="description"></iframe>
+          <iframe class="feed-homepage-iframe" src={getUserSiteConfig().features.feedPageUrl} title="description"></iframe>
         </div>
       </div>
     </div>

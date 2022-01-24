@@ -43,8 +43,9 @@ export default function HomepageGroup(props) {
     return [
       config[0],
       ...normalPages,
-      config[2]
+      ...config.slice(2)
     ];
+
   });
   function calculatePosition(index): Object {
     return {

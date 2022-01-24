@@ -1,15 +1,15 @@
 import { FullscreenApplication, ReadmeApplication } from '../Application';
 
-import { BarcodeApplication } from '../Application/BarcodeScanner/index';
 import { Entry } from '../Entry';
 import { EntryTypes } from '../../utils/constants';
 import { For } from 'solid-js';
+import { QRCodeApplication } from '../Application/QRCodeScanner/index';
 import { SettingsApplication } from '../Application/Settings/index';
 
 const apps = [
   FullscreenApplication.id,
   ReadmeApplication.id,
-  BarcodeApplication.id,
+  QRCodeApplication.id,
   SettingsApplication.id
 ]
 

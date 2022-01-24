@@ -12,6 +12,6 @@ export default function GroupPopoverTitle(props) {
     e.target.blur();
   }
   return (
-    <input class="popover-title" value={name()} onchange={handleChange} />
+    <input class="popover-title" disabled={props.disabled ? true : false} value={name()} onchange={handleChange} />
   );
 }

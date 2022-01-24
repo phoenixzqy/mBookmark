@@ -1,0 +1,67 @@
+{
+  "siteConfig": {
+    "appearance": {
+      "wallpaperUrl": null,
+      "wallpaperType": "video"
+    },
+    "features": {
+      "feedPageUrl": "https://juejin.cn/"
+    }
+  },
+  "homepages": [
+    {
+      "type": "feed"
+    },
+    {
+      "type": "normal",
+      "items": [
+        {
+          "id": "b943abc2-5431-4774-9a99-ed4210fd682f",
+          "type": "miniEntryGroup",
+          "name": "About Felix",
+          "items": [
+            {
+              "id": "734d85f5-4adc-4df5-8366-0104440c1302",
+              "type": "bookmark",
+              "url": "https://github.com/phoenixzqy",
+              "icon": "https://github.githubassets.com/favicons/favicon.svg",
+              "name": "Github",
+              "description": "GitHub is where people build software. More than 73 million people use GitHub to discover, fork, and contribute to over 200 million projects.",
+              "keywords": [
+                "tech",
+                "readings"
+              ]
+            },
+            {
+              "id": "019d3dc5-83f8-4b96-8c3e-4e0f5687782a",
+              "type": "bookmark",
+              "url": "https://phoenixzqy.github.io",
+              "icon": "",
+              "name": "Blog",
+              "description": "Felix's blog site, powered by Github page",
+              "keywords": [
+                "blog",
+                "readings"
+              ]
+            },
+            {
+              "id": "ae85a034-e663-47df-8144-69dd6e65ab03",
+              "type": "bookmark",
+              "url": "https://www.linkedin.com/in/qiyu-zhao-b02352b6/",
+              "icon": "https://static-exp1.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca",
+              "name": "LinkedIn",
+              "description": "500 million+ members | Manage your professional identity. Build and engage with your professional network. Access knowledge, insights and opportunities.",
+              "keywords": [
+                "social"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "pokeclicker",
+          "type": "application"
+        }
+      ]
+    }
+  ]
+}

@@ -1,27 +1,27 @@
-import { BaseEntryConfig, BookmarkEntryConfig, MiniEntryGroupConfig } from "../Entry";
+import { ApplicationEntryConfig, BaseEntryConfig, BookmarkEntryConfig, MiniEntryGroupConfig } from "../Entry";
 import { BaseHomepageConfig, FeedHomepageConfig, NormalHomepageConfig, WidgetsHomepageConfig } from "../Homepage";
-import { EntryTypes, MiniEntryGroupType } from '../../utils/constants';
+import { MiniEntryGroupType, wallpaperTypes } from '../../utils/constants';
 import { createContext, createMemo, createSignal } from 'solid-js';
 
 import type { appConfig } from ".";
-import appOptions from "../../config";
+import { database } from "../../utils/database";
 import { generateUUID } from '../../utils/helpers';
+import materialize from "../../utils/materialize";
 
 export const AppContext = createContext();
 
 interface AppContextState {
   appMode: () => AppMode,
   setAppMode: (mode: AppMode) => void,
-  settings: () => any,
-  updateSettings: (any) => void,
   userConfig: () => appConfig,
-  setUserConfig: (any: appConfig) => void,
+  setUserConfig: (config: appConfig) => void,
   keywords: () => string[],
-  getUserSiteconfig: () => any,
+  getUserSiteConfig: () => SiteConfig,
+  setUserSiteConfig: (config: SiteConfig) => void,
   getUserHomepageConfig: () => (BaseHomepageConfig | FeedHomepageConfig | NormalHomepageConfig | WidgetsHomepageConfig)[],
-  addEntry: (entry: (BookmarkEntryConfig | BaseEntryConfig), id?: string) => void,
+  addEntry: (entry: (BookmarkEntryConfig | BaseEntryConfig | ApplicationEntryConfig), id?: string) => void,
   removeEntry: (id: string) => boolean, // true if removed the whole group, need back to previous screenLayer
-  updateEntry: (entry: BookmarkEntryConfig) => void,
+  updateEntry: (entry: BookmarkEntryConfig | ApplicationEntryConfig) => void,
   updateMiniGroup: (id: string, miniGroup: Partial<MiniEntryGroupConfig>) => void,
   moveEntryIntoMiniGroup: (id: string, miniGroupId: string) => void,
   createMiniGroupBy2Entry: (id1: string, id2: string) => void,
@@ -34,11 +34,24 @@ export enum AppMode {
   edit
 }
 
+
+export interface AppearanceConfig {
+  wallpaperUrl: string,
+  wallpaperType: wallpaperTypes
+}
+
+export interface FeaturesConfig {
+  feedPageUrl: string
+}
+export interface SiteConfig {
+  appearance: AppearanceConfig,
+  features: FeaturesConfig
+}
+
 export function AppProvider(props) {
   const [appMode, setAppMode] = createSignal(AppMode.normal);
-  const [settings, updateSettings] = createSignal(appOptions);
   const [userConfig, setUserConfig] = createSignal({
-    siteConfig: {},
+    siteConfig: {} as SiteConfig,
     homepages: []
   });
   const keywords = createMemo(() => {
@@ -55,7 +68,7 @@ export function AppProvider(props) {
     }
     return myKeywords;
   });
-  function removeEntryHelper(conf, id: string): (BaseEntryConfig | BookmarkEntryConfig | boolean) {
+  function removeEntryHelper(conf, id: string): (BaseEntryConfig | BookmarkEntryConfig | ApplicationEntryConfig | boolean) {
     let items = conf.homepages[1].items;
     for (let i in items) {
       if (items[i].type === MiniEntryGroupType) {
@@ -76,18 +89,39 @@ export function AppProvider(props) {
     }
     return false;
   }
+  async function updateUserConfig(cb: CallableFunction) {
+    materialize.showLoader();
+    let backup = JSON.parse(JSON.stringify(userConfig()));
+    let newConfig = cb(JSON.parse(JSON.stringify(userConfig())));
+    // try update on gist
+    await database.updateData(JSON.stringify(newConfig));
+    let updatedConfig = await database.getData();
+    if (updatedConfig) {
+      materialize.toast({ html: "Successfully saved!", classes: "green" });
+      setUserConfig(updatedConfig);
+    } else {
+      materialize.toast({ html: "Failed to save!", classes: "red" });
+    }
+    materialize.hideLoader();
+  }
   const state: AppContextState = {
     appMode,
     setAppMode,
-    settings,
-    updateSettings,
     userConfig,
     setUserConfig,
     keywords,
-    getUserSiteconfig: createMemo(() => userConfig().siteConfig),
+    getUserSiteConfig: createMemo(() => userConfig().siteConfig),
+    setUserSiteConfig: (config: SiteConfig) => {
+      updateUserConfig(oldConfig => {
+        oldConfig.siteConfig = {
+          ...config
+        };
+        return JSON.parse(JSON.stringify(oldConfig));
+      });
+    },
     getUserHomepageConfig: createMemo(() => userConfig().homepages),
-    addEntry: (entry: (BaseEntryConfig | BookmarkEntryConfig), id?: string) => {
-      setUserConfig(conf => {
+    addEntry: (entry: (BaseEntryConfig | BookmarkEntryConfig | ApplicationEntryConfig), id?: string) => {
+      updateUserConfig(conf => {
         const items = conf.homepages[1].items;
         if (!id) {
           // if id is NOT offered, then add entry to the root.
@@ -104,7 +138,7 @@ export function AppProvider(props) {
     },
     removeEntry: (id: string) => {
       let removeGroup = false;
-      setUserConfig(conf => {
+      updateUserConfig(conf => {
         removeEntryHelper(conf, id);
         // remove empty entryGroup
         let items = conf.homepages[1].items;
@@ -118,9 +152,9 @@ export function AppProvider(props) {
       });
       return removeGroup;
     },
-    updateEntry: (entry: BookmarkEntryConfig) => {
+    updateEntry: (entry: BookmarkEntryConfig | ApplicationEntryConfig) => {
       const id = entry.id;
-      setUserConfig(conf => {
+      updateUserConfig(conf => {
         let items = conf.homepages[1].items;
         for (let i in items) {
           if (items[i].type !== MiniEntryGroupType) {
@@ -135,7 +169,7 @@ export function AppProvider(props) {
       });
     },
     updateMiniGroup: (id: string, miniGroup: Partial<MiniEntryGroupConfig>) => {
-      setUserConfig(conf => {
+      updateUserConfig(conf => {
         let items = conf.homepages[1].items;
         for (let i in items) {
           if (items[i].type === MiniEntryGroupType && id === items[i].id) {
@@ -146,7 +180,7 @@ export function AppProvider(props) {
       });
     },
     moveEntryIntoMiniGroup: (id: string, miniGroupId: string) => {
-      setUserConfig(conf => {
+      updateUserConfig(conf => {
         let entry = removeEntryHelper(conf, id);
         let items = conf.homepages[1].items;
         for (let i in items) {
@@ -158,7 +192,7 @@ export function AppProvider(props) {
       });
     },
     createMiniGroupBy2Entry: (putId: string, intoId: string) => {
-      setUserConfig(conf => {
+      updateUserConfig(conf => {
         let putEntry = removeEntryHelper(conf, putId);
         let items = conf.homepages[1].items;
         for (let i in items) {
@@ -177,7 +211,7 @@ export function AppProvider(props) {
       });
     },
     reOrderEntries: (id1: string, type: ("before" | "after"), id2: string, groupId?: string) => {
-      setUserConfig(conf => {
+      updateUserConfig(conf => {
         let items = conf.homepages[1].items;
         if (groupId) {
           loop1: for (let i in items) {
@@ -213,7 +247,7 @@ export function AppProvider(props) {
       });
     },
     moveEntryOutFromMoniGroup: (id: string, index: number) => {
-      setUserConfig(conf => {
+      updateUserConfig(conf => {
         let entry = removeEntryHelper(conf, id);
         if (index >= 0) {
           conf.homepages[1].items.splice(index, 0, entry);
