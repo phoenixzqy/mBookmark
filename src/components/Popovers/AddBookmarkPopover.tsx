@@ -1,16 +1,17 @@
 import { Button, Col, Input } from '../Materialize';
+import { Chips, TextArea } from '../Materialize/Input';
 import { createMemo, createSignal, useContext } from 'solid-js';
 
 import { AppContext } from '../mBookmark';
 import type { AppContextState } from '../mBookmark';
 import { BookmarkEntryConfig } from '../Entry';
-import { Chips } from '../Materialize/Input';
 import { EntryTypes } from '../../utils/constants';
 import PopoverTitle from "./PopoverTitle";
 import { Row } from '../Materialize/Grid';
 import type { ScreenLayerContextState } from '../ScreenLayerManager';
 import { ScreenLayerManagerContext } from '../ScreenLayerManager';
 import { generateUUID } from '../../utils/helpers';
+import materialize from '../../utils/materialize';
 
 export default function AddBookmarkPopover() {
   const { keywords, addEntry } = useContext(AppContext) as AppContextState;
@@ -22,6 +23,7 @@ export default function AddBookmarkPopover() {
       data: [],
       placeholder: 'Add keyword',
       secondaryPlaceholder: '+ keyword',
+      limit: 10,
       autocompleteOptions: {
         data: kwo,
         limit: 5,
@@ -45,13 +47,18 @@ export default function AddBookmarkPopover() {
         keywords: [...new Set(e)].map(item => (item as any).tag) as string[]
       }));
     } else {
+      const value = (e.target as HTMLInputElement).value;
       setData(prev => ({
         ...prev,
-        [name]: (e.target as HTMLInputElement).value
+        [name]: value
       }));
     }
   }
   const saveChanges = () => {
+    if (!data().name || !data().url) {
+      materialize.toast({ html: "Invalid: name and url are required!", classes: "red" });
+      return;
+    }
     const newBookmark: BookmarkEntryConfig = {
       ...data(),
       id: generateUUID()
@@ -66,22 +73,23 @@ export default function AddBookmarkPopover() {
         <Col s12>
           <Row>
             <Col s12>
-              <Input onChange={updateData("url")} label="URL" value={data().url}></Input>
+              <Input onInput={updateData("name")} label="* Site Name" value={data().name} maxlength="30" helperText="Max length: 30; Required"></Input>
             </Col>
             <Col s12>
-              <Input onChange={updateData("icon")} label="Icon URL" value={data().icon}></Input>
+              <Input onInput={updateData("url")} label="* URL" value={data().url} maxlength="2000" helperText="Max length: 2000; Required"></Input>
             </Col>
             <Col s12>
-              <Input onChange={updateData("name")} label="Site Name" value={data().name}></Input>
+              <Input onInput={updateData("icon")} label="Icon URL" value={data().icon} maxlength="200" helperText="Max length: 200"></Input>
             </Col>
             <Col s12>
-              <Input onChange={updateData("description")} label="Site Description" value={data().description}></Input>
+              <TextArea onInput={updateData("description")} label="Site Description" value={data().description} maxlength="300" helperText="Max length: 300"></TextArea>
             </Col>
             <Col s12>
               <Chips
                 options={chipsOptions()}
                 onChange={updateData("keywords")}
                 label="Keywords"
+                helperText="Limit: 10 keywords"
               ></Chips>
             </Col>
           </Row>

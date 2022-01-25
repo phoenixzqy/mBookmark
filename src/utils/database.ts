@@ -49,6 +49,9 @@ class Database {
       this.octokit = new Octokit({ auth: config.token });
     }
   }
+  public clearLocalConfig() {
+    window.localStorage.removeItem("localConfig");
+  }
   public getToken(): string {
     return this.getLocalConfig().token;
   }

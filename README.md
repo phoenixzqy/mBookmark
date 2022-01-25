@@ -33,8 +33,8 @@ mBookmark is short for mobile-like bookmark
   - [ ] * Readme/intro doc
   - [ ] * barcode scanner
   - [x] * settings
-- [ ] input validations
-- [ ] login page
+- [x] input validations
+- [x] login page
 - [x] gist based DB
 - [x] localstorage based DB
 - [ ] coachmark
@@ -44,3 +44,5 @@ mBookmark is short for mobile-like bookmark
 - [ ] Vite config
 - [ ] gitpage sub-repo
 - [ ] comments and documentation in code
+
+- [ ] sample site
