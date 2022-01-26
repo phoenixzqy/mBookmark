@@ -88,14 +88,3 @@ export function throttle(fn, delay) {
     }, delay)
   }
 }
-
-export function highlight(str: string, phrase: string): HTMLElement {
-  let reg = new RegExp(phrase, 'gi');
-  let ele = document.createElement("div");
-  let matches = str.match(reg) || [];
-  matches.forEach(m => {
-    str = str.replace(m, `<span class="highlight">${m}</span>`)
-  });
-  ele.innerHTML = str;
-  return ele;
-}
