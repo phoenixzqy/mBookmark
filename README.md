@@ -38,7 +38,7 @@ mBookmark is short for mobile-like bookmark
 - [x] gist based DB
 - [x] localstorage based DB
 - [ ] coachmark
-- [ ] make it into browser extension
+- [x] make it into browser extension
   - [ ] * add bookmark based on user current viewing website.
 - [ ] touch events support
 - [ ] Vite config

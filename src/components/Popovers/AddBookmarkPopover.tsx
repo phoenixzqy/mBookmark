@@ -66,12 +66,43 @@ export default function AddBookmarkPopover() {
     addEntry(newBookmark, currentScreenLayer().data?.parentId?.());
     backToPrevLayer();
   }
+  const copyScript = () => {
+    const script = `JSON.stringify({
+      name: document.title?.substring(0, 30) || "",
+      description: document.querySelector("meta[name=description]")?.getAttribute("content") || "",
+      url: document.location.href
+    })`;
+    navigator.clipboard.writeText(script);
+    materialize.toast({ html: "Script has been copied to clipboard!", classes: "green" });
+  }
+  const readClipboardData = () => {
+    navigator.clipboard.readText().then(text => {
+      const iData = JSON.parse(text);
+      if (iData.name === undefined || iData.description === undefined || iData.url === undefined) {
+        throw new Error("invalid data");
+      }
+      setData(prev => {
+        if (iData.name) prev.name = iData.name;
+        if (iData.description) prev.description = iData.description;
+        if (iData.url) prev.url = iData.url;
+        return { ...prev }
+      });
+      materialize.toast({ html: "Stie Data is successfully imported!", classes: "green" });
+    }).catch(e => {
+      console.error(e)
+      materialize.toast({ html: "Invalid data format", classes: "red" });
+    });
+  }
   return (
     <div class="popover-container add-entry-popover-container">
       <PopoverTitle name="Add Bookmark" disabled={true} />
       <Row>
         <Col s12>
           <Row>
+            <Col s12>
+              <Button className="icon-button" icon="code" onClick={copyScript} title="copy the helper script onto clipboard"></Button>
+              <Button className="icon-button" icon="input" onClick={readClipboardData} title="import json data into the form"></Button>
+            </Col>
             <Col s12>
               <Input onInput={updateData("name")} label="* Site Name" value={data().name} maxlength="30" helperText="Max length: 30; Required"></Input>
             </Col>

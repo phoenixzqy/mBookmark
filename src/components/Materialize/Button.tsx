@@ -1,7 +1,7 @@
 import { Show, createMemo } from "solid-js";
 
 export function Button(props) {
-  const { disabled = false, className = "", size, onClick, style = {} } = props;
+  const { disabled = false, className = "", size, onClick, style = {}, title = "" } = props;
   const computedClass = createMemo((): string => {
     let cn = "waves-effect waves-light";
     if (disabled) cn += ` disabled`;
@@ -11,7 +11,7 @@ export function Button(props) {
     if (className) cn += ` ${className}`;
     return cn;
   });
-  return <a class={computedClass()} onClick={onClick} style={style}>
+  return <a class={computedClass()} onClick={onClick} style={style} title={title}>
     <Show when={props.icon} children={<></>}>
       <i class="material-icons left">{props.icon}</i>
     </Show>

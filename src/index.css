@@ -286,6 +286,16 @@ body {
 .add-entry-popover-container .submit-button {
   text-align: center;
 }
+.icon-button {
+  width: 45px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.icon-button i {
+  margin: 0;
+}
 .search-popover-searchbar-container, .search-popover-search-result-container {
   display: inline-flex;
   width: 100%;
