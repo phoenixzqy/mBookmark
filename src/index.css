@@ -143,6 +143,7 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
   user-select: none;
+  max-width: 90px;
 }
 .mini-entry-group-wrapper {
   display: flex;
@@ -366,15 +367,17 @@ body {
 }
 .search-result-item-title {
   text-align: left;
-  height: 35px;
-  font-size: 25px;
+  height: 30px;
+  font-size: 18px;
   line-height: 25px;
   font-weight: 600;
+  max-width: none;
 }
 .search-result-item-keywords {
   text-align: left;
   height: 20px;
   color: rgba(134, 255, 0, 0.79);
+  max-width: none;
 }
 .search-result-item-desc {
   margin-top: 5px;
