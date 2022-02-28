@@ -6,11 +6,10 @@ import defaultData from "./defaultData.json";
 
 // import {Octokit }
 
-
-
 export interface LocalConfig {
   token: string;
   gistid: string;
+  secret: string;
 }
 // NOTE: ignoring irrelevant attributes
 export interface Gist {
@@ -36,12 +35,20 @@ class Database {
     if (!config) {
       config = JSON.stringify({
         token: "",
-        gistid: ""
+        gistid: "",
+        secret: ""
       });
       // 1st time user, setup default config
       window.localStorage.setItem("localConfig", config);
     }
     return JSON.parse(config);
+  }
+  public initLocalConfig(): void {
+    this.setLocalConfig({
+      token: "",
+      secret: "",
+      gistid: ""
+    });
   }
   public setLocalConfig(config: LocalConfig) {
     window.localStorage.setItem("localConfig", JSON.stringify(config));
@@ -54,6 +61,9 @@ class Database {
   }
   public getToken(): string {
     return this.getLocalConfig().token;
+  }
+  public getSecret(): string {
+    return this.getLocalConfig().secret;
   }
 
   /**
@@ -79,7 +89,8 @@ class Database {
           let gist = (await this.getGist(gists[i].id)).data;
           this.setLocalConfig({
             token: this.getToken(),
-            gistid: gist.id
+            gistid: gist.id,
+            secret: this.getSecret()
           });
           return JSON.parse(this.decrypt(gist.files[GIST_DB_NAME].content));
         }
@@ -98,7 +109,8 @@ class Database {
     const gist = response.data as Gist;
     this.setLocalConfig({
       token: this.getToken(),
-      gistid: gist.id
+      gistid: gist.id,
+      secret: this.getSecret()
     });
     return JSON.parse(this.decrypt(gist.files[GIST_DB_NAME].content));
   }
@@ -160,11 +172,11 @@ class Database {
   }
 
   private encrypt(content: string) {
-    return CryptoJS.AES.encrypt(content, this.getToken()).toString();
+    return CryptoJS.AES.encrypt(content, this.getSecret()).toString();
   }
 
   private decrypt(content: string) {
-    return CryptoJS.AES.decrypt(content, this.getToken()).toString(CryptoJS.enc.Utf8);
+    return CryptoJS.AES.decrypt(content, this.getSecret()).toString(CryptoJS.enc.Utf8);
   }
 }
 

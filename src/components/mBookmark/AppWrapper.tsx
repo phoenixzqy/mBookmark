@@ -25,10 +25,7 @@ export default function AppWrapper() {
         console.error(e);
         materialize.toast({ html: "Failed to initialize app", classes: "red" });
         // unset token incase invalid token offered
-        database.setLocalConfig({
-          token: "",
-          gistid: ""
-        });
+        database.initLocalConfig();
         setIsSignedIn(false);
         materialize.hideLoader();
       })

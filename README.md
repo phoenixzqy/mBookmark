@@ -40,9 +40,9 @@ mBookmark is short for mobile-like bookmark
 - [ ] coachmark
 - [x] make it into browser extension
   - [ ] * add bookmark based on user current viewing website.
-- [ ] touch events support
+- [ ] mobile touch events support
 - [ ] Vite config
-- [ ] gitpage sub-repo
 - [ ] comments and documentation in code
 
 - [ ] sample site
+- [x] add custom encrypt secret, like password. In case user lose old github token. Now user can use any github token with proper r/w authority to login this app. Data will be encrypted with secret

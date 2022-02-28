@@ -11,8 +11,6 @@ import materialize from "../../utils/materialize";
 export const AppContext = createContext();
 
 interface AppContextState {
-  appMode: () => AppMode,
-  setAppMode: (mode: AppMode) => void,
   userConfig: () => appConfig,
   setUserConfig: (config: appConfig) => void,
   keywords: () => string[],
@@ -27,11 +25,6 @@ interface AppContextState {
   createMiniGroupBy2Entry: (id1: string, id2: string) => void,
   reOrderEntries: (id1: string, type: ("before" | "after"), id2: string, groupId?: string) => void,
   moveEntryOutFromMoniGroup: (id: string, index: number) => void
-}
-
-export enum AppMode {
-  normal,
-  edit
 }
 
 
@@ -49,7 +42,6 @@ export interface SiteConfig {
 }
 
 export function AppProvider(props) {
-  const [appMode, setAppMode] = createSignal(AppMode.normal);
   const [userConfig, setUserConfig] = createSignal({
     siteConfig: {} as SiteConfig,
     homepages: []
@@ -105,8 +97,6 @@ export function AppProvider(props) {
     materialize.hideLoader();
   }
   const state: AppContextState = {
-    appMode,
-    setAppMode,
     userConfig,
     setUserConfig,
     keywords,
