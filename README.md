@@ -46,3 +46,6 @@ mBookmark is short for mobile-like bookmark
 
 - [ ] sample site
 - [x] add custom encrypt secret, like password. In case user lose old github token. Now user can use any github token with proper r/w authority to login this app. Data will be encrypted with secret
+- [ ] service worker
+- [ ] web wroker
+- [ ] PWA

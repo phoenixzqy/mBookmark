@@ -11,12 +11,20 @@ interface searchResult extends BookmarkEntryConfig {
   nameEle?: HTMLElement | string;
   keywordsEle?: HTMLElement | string;
   descriptionEle?: HTMLElement | string;
+  matchedPhraseCount?: number;
+  matchedTotalCount?: number;
+}
+
+interface HighlightedResult {
+  highlightedStr: string;
+  matchedPhraseCount: number;
+  matchedTotalCount: number;
 }
 
 function findMatch(config: BookmarkEntryConfig, pattern: RegExp): boolean {
   const name = config.name?.toLowerCase() || "";
   const desc = config.description?.toLowerCase() || "";
-  const keywords = config.keywords?.join(", ")?.toLowerCase() || ""
+  const keywords = config.keywords?.join(", ")?.toLowerCase() || "";
   return (`${name}, ${desc}, ${keywords}`).match(pattern) !== null;
 }
 
@@ -30,16 +38,28 @@ const highlightBgColors = [
   "#bcf2d8"
 ];
 let colorDict = {};
-function highlight(str: string, phrase: string): string {
-  if (!str || !phrase) return "";
+function highlight(str: string, phrase: string): HighlightedResult {
+  if (!str || !phrase) return {
+    highlightedStr: "",
+    matchedPhraseCount: 0,
+    matchedTotalCount: 0
+  };
   let reg = new RegExp(phrase.split(",").filter(str => str !== "").join("|"), 'gi');
   let matches = [];
   let result;
-  while ((result = reg.exec(str))) {
-    matches.push(result);
-  }
-  let strArr = str.split("");
+  let matchedPhraseCount = 0;
+  let uniqueMatchedPhrases = [];
+  let matchedTotalCount = 0
 
+  while ((result = reg.exec(str))) {
+    if (!uniqueMatchedPhrases.includes(result[0])) {
+      uniqueMatchedPhrases.push(result[0]);
+    }
+    matches.push(result);
+    matchedTotalCount++;
+  }
+  matchedPhraseCount = uniqueMatchedPhrases.length;
+  let strArr = str.split("");
   matches.forEach((m) => {
     if (!colorDict[m[0]]) {
       colorDict[m[0]] = highlightBgColors[Object.keys(colorDict).length % highlightBgColors.length];
@@ -49,7 +69,11 @@ function highlight(str: string, phrase: string): string {
       strArr[i + m.index] = undefined;
     }
   });
-  return strArr.filter(substr => substr !== undefined).join("");
+  return {
+    highlightedStr: strArr.filter(substr => substr !== undefined).join(""),
+    matchedPhraseCount,
+    matchedTotalCount
+  }
 }
 export default function SearchPopover(props) {
   let inputRef;
@@ -81,21 +105,36 @@ export default function SearchPopover(props) {
     }
     // add highlights
     result.forEach(item => {
-      const name = highlight(item.name?.toLowerCase() || "", searchItem());
-      const desc = highlight(item.description?.toLowerCase() || "", searchItem());
-      const keywords = highlight(item.keywords?.join(", ")?.toLowerCase() || "", searchItem());
+      const name = highlight(item.name || "", searchItem());
+      const desc = highlight(item.description || "", searchItem());
+      const keywords = highlight(item.keywords?.join(", ") || "", searchItem());
+      item.matchedPhraseCount = Math.max(name.matchedPhraseCount, desc.matchedPhraseCount, keywords.matchedPhraseCount);
+      item.matchedTotalCount = Math.max(name.matchedTotalCount, desc.matchedTotalCount, keywords.matchedTotalCount);
       item.nameEle = document.createElement("div");
-      item.nameEle.innerHTML = name;
+      item.nameEle.innerHTML = name.highlightedStr;
       if (desc) {
         item.descriptionEle = document.createElement("div");
-        item.descriptionEle.innerHTML = desc;
+        item.descriptionEle.innerHTML = desc.highlightedStr;
       }
       if (keywords) {
         item.keywordsEle = document.createElement("div");
-        item.keywordsEle.innerHTML = keywords;
+        // sort keywords by highlighted condition. 
+        item.keywordsEle.innerHTML = keywords.highlightedStr.split(", ").sort((a, b) => {
+          if (a.indexOf(`<span class="highlight"`) >= 0) return -1;
+          else if (b.indexOf(`<span class="highlight"`) >= 0) return 1;
+          else return 0;
+        }).join(", ");
       }
     });
-    return result;
+    return result.sort((a, b) => {
+      if (a.matchedPhraseCount > b.matchedPhraseCount) return -1;
+      else if (a.matchedPhraseCount < b.matchedPhraseCount) return 1;
+      else {
+        if (a.matchedTotalCount > b.matchedTotalCount) return -1;
+        else if (a.matchedTotalCount < b.matchedTotalCount) return 1;
+        else return 0;
+      }
+    });
   });
 
 
