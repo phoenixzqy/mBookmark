@@ -8,7 +8,9 @@ mBookmark is short for mobile-like bookmark. This is only an exercising project 
 
 ![Main Screen](https://github.com/phoenixzqy/mBookmark/blob/main/images/main_screen.png "Main Screen")
 
-## Start to use
+![Search Screen](https://github.com/phoenixzqy/mBookmark/blob/main/images/search_screen.png "Search Screen")
+
+## INtroduction
 
 ### Demo
 
@@ -42,8 +44,9 @@ You can even fork/clone this app and build your own version using your github pa
 * Mobile-like GUI/UX
 * Live wallpaper, and you can change it to any static/live wallpaper you like online.
 * Fullscreen support
+* Mobile device support
 
-### User Menu
+### Start to use
 
 * Create your own personal github access token by following github [official document](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
   * You will only need gist read&write permission.
