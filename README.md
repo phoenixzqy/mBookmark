@@ -68,6 +68,7 @@ You can even fork/clone this app and build your own version using your github pa
 * [SolidJS](https://www.solidjs.com/)
 * [CryptoJS](https://github.com/brix/crypto-js)
 * [qr-code-scanner](https://github.com/code-kotis/qr-code-scanner)
+* [Materialize](https://materializecss.com/)
 
 ## TODOs
 
