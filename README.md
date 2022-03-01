@@ -25,12 +25,12 @@ You can even fork/clone this app and build your own version using your github pa
 ### Features
 
 * Fully github based app
-  * using my github page as renderring server
-  * using gist as database
+  * Using my github page as renderring server
+  * Using gist as database
 * Privacy and security:
   * Even though your data is saved on gist which is visible to public, all data is `AES encrypted` with your own `secret`.
   * Your secret is `MD5 encrypted` and stored in your browser. You can safely remove them by signing out. A secret is just another name of password.
-  * Since it is based on Gist, you will have your power to find back/rollback/manage your data using gist features.
+  * Since it is based on Gist, you will be able to rollback/manage your data using gist features powered by github.
 * Powerfull search feature:
   * Supporting multiple keywords search, eg: `word1,word2,word3`
 * Web Application integration. A web app can be:
@@ -45,22 +45,24 @@ You can even fork/clone this app and build your own version using your github pa
 
 ### User Menu
 
-1. Create your own personal github access token by following github [official document](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
-  a. You will only need gist read&write permission.
-  b. Please set your token to be perminent (no expiration date).
-2. Use your token and your own `secret`/`password` to [login](https://phoenixzqy.github.io/demo/mBookmark/index.html) and enjoy it!
-  a. The very first login will automatically create a gist ticket under your account. Please don't delete it unless you decide to stop using it.
-3. Shortcut and gastures
-  a. `slide left/right` to change between screens
-  b. `slide down` to call out `search` screen
+* Create your own personal github access token by following github [official document](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+  * You will only need gist read&write permission.
+  * Please set your token to be perminent (no expiration date).
+* Use your token and your own `secret`/`password` to [login](https://phoenixzqy.github.io/demo/mBookmark/index.html) and enjoy it!
+
+* The very first login will automatically create a gist ticket under your account. Please don't delete it unless you decide to stop using it.
+
+* Shortcut and gastures
+  * `slide left/right` to change between screens
+  * `slide down` to call out `search` screen
     * Supporting multiple keywords search, eg: `word1,word2,word3`
-  c. `right click` on `Bookmark` to `edit`/`remove` it.
-  d. In Bookmark `Add` screen, there are 2 buttons for you to simplify the process of creation. Click on `helper script` button to copy a piece of code. Then paste and run it in any website console to generate JSON version of site info. Then copy the JSON string into your clipboard, and then click on the `import` button to quickly import site info.
-  e. in all popout screens, click on the background area will bring you back to main screen.
-  d. Edit `folder name` by opening a folder and clicking on its name/title.
-4. -1 screen is supported. By default, I use `juejin.com` as my feed provider. You can change it with any websites which allow:
-  a. `iframe`
-  b. `CORS` policy
+  * `right click` on `Bookmark` to `edit`/`remove` it.
+* In Bookmark `Add` screen, there are 2 buttons for you to simplify the process of creation. Click on `helper script` button to copy a piece of code. Then paste and run it in any website console to generate JSON version of site info. Then copy the JSON string into your clipboard, and then click on the `import` button to quickly import site info.
+* In all popout screens, click on the background area will bring you back to main screen.
+* Edit `folder name` by opening a folder and clicking on its name/title.
+* -1 screen is supported. By default, I use `juejin.com` as my feed provider. You can change it with any websites which allow:
+  * `iframe`
+  * `CORS` policy
 
 ### Dependencies
 
