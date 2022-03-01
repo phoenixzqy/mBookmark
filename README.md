@@ -4,6 +4,10 @@
 
 mBookmark is short for mobile-like bookmark. This is only an exercising project for fun. The purpose of this project is to simulate a mobile-like GUI in web environment. Use it to manage user's bookmark. Create a powerful search feature for users to efficiently access saved sites. A mobile-like GUI will help user to remeber their bookmark position/location more easily than traditional browser bookmark. And mainwhile, I bring a concept of "application" into this project. The role of application is the equivilant application in your phone, just web version replacements. Using this portal, I will be able to integrate with all my past works and even many stunning open source web apps like "QR scanner" into this place. A real all-in-one web app.
 
+## Screenshots
+
+![Main Screen](https://github.com/phoenixzqy/mBookmark/blob/main/images/main_screen.png "Main Screen")
+
 ## Start to use
 
 ### Demo
@@ -14,7 +18,7 @@ You can play with this simplified version here: demo (TODO)
 
 The live version is here: [live](https://phoenixzqy.github.io/demo/mBookmark/index.html)
 
-### fork this app
+### Fork/Clone this app
 
 You can even fork/clone this app and build your own version using your github page, or any server providers.
 
@@ -49,6 +53,7 @@ You can even fork/clone this app and build your own version using your github pa
 3. Shortcut and gastures
   a. `slide left/right` to change between screens
   b. `slide down` to call out `search` screen
+    * Supporting multiple keywords search, eg: `word1,word2,word3`
   c. `right click` on `Bookmark` to `edit`/`remove` it.
   d. In Bookmark `Add` screen, there are 2 buttons for you to simplify the process of creation. Click on `helper script` button to copy a piece of code. Then paste and run it in any website console to generate JSON version of site info. Then copy the JSON string into your clipboard, and then click on the `import` button to quickly import site info.
   e. in all popout screens, click on the background area will bring you back to main screen.
