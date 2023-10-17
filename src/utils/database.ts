@@ -1,4 +1,4 @@
-import { App, Octokit } from "https://cdn.skypack.dev/octokit?dts";
+import { App, Octokit } from "https://esm.sh/octokit?dts";
 
 import CryptoJS from "crypto-js";
 import { appConfig } from "../components/mBookmark";
